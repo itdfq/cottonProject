@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itdfq.cotton.dao.TAdminDAO">
+
+    <resultMap id="tAdminMap" type="com.itdfq.cotton.model.TAdmin">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="role" column="role"/>
+        <result property="tel" column="tel"/>
+        <result property="headImgName" column="head_img_name"/>
+    </resultMap>
+
+    <!--通过ID查询单个-->
+    <select id="findById" resultMap="tAdminMap">
+        SELECT id,username,password,role,tel,head_img_name FROM t_admin
+        WHERE id=#{id}
+    </select>
+
+    <!--分页查询-->
+    <select id="findByPage" resultMap="tAdminMap">
+        SELECT id,username,password,role,tel,head_img_name FROM t_admin
+    </select>
+
+    <!--新增-->
+    <insert id="insert">
+        INSERT INTO t_admin(id,username,password,role,tel,head_img_name)
+        VALUES (#{id},#{username},#{password},#{role},#{tel},#{headImgName})
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        UPDATE t_admin SET username=#{username},password=#{password},role=#{role},tel=#{tel},head_img_name=#{headImgName}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过ID删除单个-->
+    <delete id="deleteById">
+        DELETE FROM t_admin
+        WHERE id=#{id}
+    </delete>
+
+</mapper>

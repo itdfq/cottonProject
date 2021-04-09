@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itdfq.cotton.dao.TTeamDAO">
+
+    <resultMap id="tTeamMap" type="com.itdfq.cotton.model.TTeam">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="role" column="role"/>
+        <result property="aaccountState" column="aaccount_state"/>
+        <result property="tel" column="tel"/>
+        <result property="teamName" column="team_name"/>
+        <result property="realName" column="real_name"/>
+        <result property="email" column="email"/>
+        <result property="addressProvince" column="address_province"/>
+        <result property="addressCity" column="address_city"/>
+        <result property="addressDistrict" column="address_district"/>
+        <result property="addressDetail" column="address_detail"/>
+        <result property="mark" column="mark"/>
+        <result property="headImgName" column="head_img_name"/>
+    </resultMap>
+
+    <!--通过ID查询单个-->
+    <select id="findById" resultMap="tTeamMap">
+        SELECT id,username,password,role,aaccount_state,tel,team_name,real_name,email,address_province,address_city,address_district,address_detail,mark,head_img_name FROM t_team
+        WHERE id=#{id}
+    </select>
+
+    <!--分页查询-->
+    <select id="findByPage" resultMap="tTeamMap">
+        SELECT id,username,password,role,aaccount_state,tel,team_name,real_name,email,address_province,address_city,address_district,address_detail,mark,head_img_name FROM t_team
+    </select>
+
+    <!--新增-->
+    <insert id="insert">
+        INSERT INTO t_team(id,username,password,role,aaccount_state,tel,team_name,real_name,email,address_province,address_city,address_district,address_detail,mark,head_img_name)
+        VALUES (#{id},#{username},#{password},#{role},#{aaccountState},#{tel},#{teamName},#{realName},#{email},#{addressProvince},#{addressCity},#{addressDistrict},#{addressDetail},#{mark},#{headImgName})
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        UPDATE t_team SET username=#{username},password=#{password},role=#{role},aaccount_state=#{aaccountState},tel=#{tel},team_name=#{teamName},real_name=#{realName},email=#{email},address_province=#{addressProvince},address_city=#{addressCity},address_district=#{addressDistrict},address_detail=#{addressDetail},mark=#{mark},head_img_name=#{headImgName}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过ID删除单个-->
+    <delete id="deleteById">
+        DELETE FROM t_team
+        WHERE id=#{id}
+    </delete>
+
+</mapper>

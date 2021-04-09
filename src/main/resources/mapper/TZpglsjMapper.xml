@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itdfq.cotton.dao.TZpglsjDAO">
+
+    <resultMap id="tZpglsjMap" type="com.itdfq.cotton.model.TZpglsj">
+        <id property="id" column="id"/>
+        <result property="belongToAccount" column="belong_to_account"/>
+        <result property="zaiPeiNianFen" column="zai_pei_nian_fen"/>
+        <result property="tuRangQianZuo" column="tu_rang_qian_zuo"/>
+        <result property="gengDiZhengDi" column="geng_di_zheng_di"/>
+        <result property="boZhongQi" column="bo_zhong_qi"/>
+        <result property="yiMiaoQi" column="yi_miao_qi"/>
+        <result property="jianMiaoQi" column="jian_miao_qi"/>
+        <result property="dingMiaoQi" column="ding_miao_qi"/>
+        <result property="zhongGengChuCao01" column="zhong_geng_chu_cao_01"/>
+        <result property="zhongGengChuCao02" column="zhong_geng_chu_cao_02"/>
+        <result property="zhongGengChuCao03" column="zhong_geng_chu_cao_03"/>
+        <result property="zhongGengChuCao04" column="zhong_geng_chu_cao_04"/>
+        <result property="zhongGengChuCao05" column="zhong_geng_chu_cao_05"/>
+        <result property="zhongGengChuCao06" column="zhong_geng_chu_cao_06"/>
+        <result property="zhongGengChuCao07" column="zhong_geng_chu_cao_07"/>
+        <result property="zhongGengChuCao08" column="zhong_geng_chu_cao_08"/>
+        <result property="zhongGengChuCao09" column="zhong_geng_chu_cao_09"/>
+        <result property="zhongGengChuCao10" column="zhong_geng_chu_cao_10"/>
+        <result property="zhongGengChuCao11" column="zhong_geng_chu_cao_11"/>
+        <result property="zhongGengChuCao12" column="zhong_geng_chu_cao_12"/>
+        <result property="peituqi" column="peiTuQi"/>
+        <result property="jiFei" column="ji_fei"/>
+        <result property="zhuiFeiDate1" column="zhui_fei_date_1"/>
+        <result property="zhuiFei1" column="zhui_fei_1"/>
+        <result property="zhuiFeiDate2" column="zhui_fei_date_2"/>
+        <result property="zhuiFei2" column="zhui_fei_2"/>
+        <result property="zhuiFeiDate3" column="zhui_fei_date_3"/>
+        <result property="zhuiFei3" column="zhui_fei_3"/>
+        <result property="zhuiFeiDate4" column="zhui_fei_date_4"/>
+        <result property="zhuiFei4" column="zhui_fei_4"/>
+        <result property="guanGai1" column="guan_gai_1"/>
+        <result property="guanGai2" column="guan_gai_2"/>
+        <result property="guanGai3" column="guan_gai_3"/>
+        <result property="guanGai4" column="guan_gai_4"/>
+        <result property="guanGai5" column="guan_gai_5"/>
+        <result property="guanGai6" column="guan_gai_6"/>
+        <result property="guanGai7" column="guan_gai_7"/>
+        <result property="guanGai8" column="guan_gai_8"/>
+        <result property="guanGai9" column="guan_gai_9"/>
+        <result property="zhengZhi1" column="zheng_zhi_1"/>
+        <result property="zhengZhi2" column="zheng_zhi_2"/>
+        <result property="zhengZhi3" column="zheng_zhi_3"/>
+        <result property="daDing" column="da_ding"/>
+        <result property="bingChongFangZhiDate1" column="bing_chong_fang_zhi_date_1"/>
+        <result property="bingChongFangZhi1" column="bing_chong_fang_zhi_1"/>
+        <result property="bingChongFangZhiDate2" column="bing_chong_fang_zhi_date_2"/>
+        <result property="bingChongFangZhi2" column="bing_chong_fang_zhi_2"/>
+        <result property="bingChongFangZhiDate3" column="bing_chong_fang_zhi_date_3"/>
+        <result property="bingChongFangZhi3" column="bing_chong_fang_zhi_3"/>
+        <result property="bingChongFangZhiDate4" column="bing_chong_fang_zhi_date_4"/>
+        <result property="bingChongFangZhi4" column="bing_chong_fang_zhi_4"/>
+        <result property="bingChongFangZhiDate5" column="bing_chong_fang_zhi_date_5"/>
+        <result property="bingChongFangZhi5" column="bing_chong_fang_zhi_5"/>
+        <result property="bingChongFangZhiDate6" column="bing_chong_fang_zhi_date_6"/>
+        <result property="bingChongFangZhi6" column="bing_chong_fang_zhi_6"/>
+        <result property="huaTiaoDate1" column="hua_tiao_date_1"/>
+        <result property="huaTiao1" column="hua_tiao_1"/>
+        <result property="huaTiaoDate2" column="hua_tiao_date_2"/>
+        <result property="huaTiao2" column="hua_tiao_2"/>
+        <result property="huaTiaoDate3" column="hua_tiao_date_3"/>
+        <result property="huaTiao3" column="hua_tiao_3"/>
+        <result property="huaTiaoDate4" column="hua_tiao_date_4"/>
+        <result property="huaTiao4" column="hua_tiao_4"/>
+        <result property="shouHuaQi1" column="shou_hua_qi_1"/>
+        <result property="shouHuaQi2" column="shou_hua_qi_2"/>
+        <result property="shouHuaQi3" column="shou_hua_qi_3"/>
+        <result property="sjqChuShuang" column="sjq_chu_shuang"/>
+        <result property="sjqKuShuang" column="sjq_ku_shuang"/>
+        <result property="qiuGeng" column="qiu_geng"/>
+        <result property="mark" column="mark"/>
+    </resultMap>
+
+    <!--通过ID查询单个-->
+    <select id="findById" resultMap="tZpglsjMap">
+        SELECT id,belong_to_account,zai_pei_nian_fen,tu_rang_qian_zuo,geng_di_zheng_di,bo_zhong_qi,yi_miao_qi,jian_miao_qi,ding_miao_qi,zhong_geng_chu_cao_01,zhong_geng_chu_cao_02,zhong_geng_chu_cao_03,zhong_geng_chu_cao_04,zhong_geng_chu_cao_05,zhong_geng_chu_cao_06,zhong_geng_chu_cao_07,zhong_geng_chu_cao_08,zhong_geng_chu_cao_09,zhong_geng_chu_cao_10,zhong_geng_chu_cao_11,zhong_geng_chu_cao_12,peiTuQi,ji_fei,zhui_fei_date_1,zhui_fei_1,zhui_fei_date_2,zhui_fei_2,zhui_fei_date_3,zhui_fei_3,zhui_fei_date_4,zhui_fei_4,guan_gai_1,guan_gai_2,guan_gai_3,guan_gai_4,guan_gai_5,guan_gai_6,guan_gai_7,guan_gai_8,guan_gai_9,zheng_zhi_1,zheng_zhi_2,zheng_zhi_3,da_ding,bing_chong_fang_zhi_date_1,bing_chong_fang_zhi_1,bing_chong_fang_zhi_date_2,bing_chong_fang_zhi_2,bing_chong_fang_zhi_date_3,bing_chong_fang_zhi_3,bing_chong_fang_zhi_date_4,bing_chong_fang_zhi_4,bing_chong_fang_zhi_date_5,bing_chong_fang_zhi_5,bing_chong_fang_zhi_date_6,bing_chong_fang_zhi_6,hua_tiao_date_1,hua_tiao_1,hua_tiao_date_2,hua_tiao_2,hua_tiao_date_3,hua_tiao_3,hua_tiao_date_4,hua_tiao_4,shou_hua_qi_1,shou_hua_qi_2,shou_hua_qi_3,sjq_chu_shuang,sjq_ku_shuang,qiu_geng,mark FROM t_zpglsj
+        WHERE id=#{id}
+    </select>
+
+    <!--分页查询-->
+    <select id="findByPage" resultMap="tZpglsjMap">
+        SELECT id,belong_to_account,zai_pei_nian_fen,tu_rang_qian_zuo,geng_di_zheng_di,bo_zhong_qi,yi_miao_qi,jian_miao_qi,ding_miao_qi,zhong_geng_chu_cao_01,zhong_geng_chu_cao_02,zhong_geng_chu_cao_03,zhong_geng_chu_cao_04,zhong_geng_chu_cao_05,zhong_geng_chu_cao_06,zhong_geng_chu_cao_07,zhong_geng_chu_cao_08,zhong_geng_chu_cao_09,zhong_geng_chu_cao_10,zhong_geng_chu_cao_11,zhong_geng_chu_cao_12,peiTuQi,ji_fei,zhui_fei_date_1,zhui_fei_1,zhui_fei_date_2,zhui_fei_2,zhui_fei_date_3,zhui_fei_3,zhui_fei_date_4,zhui_fei_4,guan_gai_1,guan_gai_2,guan_gai_3,guan_gai_4,guan_gai_5,guan_gai_6,guan_gai_7,guan_gai_8,guan_gai_9,zheng_zhi_1,zheng_zhi_2,zheng_zhi_3,da_ding,bing_chong_fang_zhi_date_1,bing_chong_fang_zhi_1,bing_chong_fang_zhi_date_2,bing_chong_fang_zhi_2,bing_chong_fang_zhi_date_3,bing_chong_fang_zhi_3,bing_chong_fang_zhi_date_4,bing_chong_fang_zhi_4,bing_chong_fang_zhi_date_5,bing_chong_fang_zhi_5,bing_chong_fang_zhi_date_6,bing_chong_fang_zhi_6,hua_tiao_date_1,hua_tiao_1,hua_tiao_date_2,hua_tiao_2,hua_tiao_date_3,hua_tiao_3,hua_tiao_date_4,hua_tiao_4,shou_hua_qi_1,shou_hua_qi_2,shou_hua_qi_3,sjq_chu_shuang,sjq_ku_shuang,qiu_geng,mark FROM t_zpglsj
+    </select>
+
+    <!--新增-->
+    <insert id="insert">
+        INSERT INTO t_zpglsj(id,belong_to_account,zai_pei_nian_fen,tu_rang_qian_zuo,geng_di_zheng_di,bo_zhong_qi,yi_miao_qi,jian_miao_qi,ding_miao_qi,zhong_geng_chu_cao_01,zhong_geng_chu_cao_02,zhong_geng_chu_cao_03,zhong_geng_chu_cao_04,zhong_geng_chu_cao_05,zhong_geng_chu_cao_06,zhong_geng_chu_cao_07,zhong_geng_chu_cao_08,zhong_geng_chu_cao_09,zhong_geng_chu_cao_10,zhong_geng_chu_cao_11,zhong_geng_chu_cao_12,peiTuQi,ji_fei,zhui_fei_date_1,zhui_fei_1,zhui_fei_date_2,zhui_fei_2,zhui_fei_date_3,zhui_fei_3,zhui_fei_date_4,zhui_fei_4,guan_gai_1,guan_gai_2,guan_gai_3,guan_gai_4,guan_gai_5,guan_gai_6,guan_gai_7,guan_gai_8,guan_gai_9,zheng_zhi_1,zheng_zhi_2,zheng_zhi_3,da_ding,bing_chong_fang_zhi_date_1,bing_chong_fang_zhi_1,bing_chong_fang_zhi_date_2,bing_chong_fang_zhi_2,bing_chong_fang_zhi_date_3,bing_chong_fang_zhi_3,bing_chong_fang_zhi_date_4,bing_chong_fang_zhi_4,bing_chong_fang_zhi_date_5,bing_chong_fang_zhi_5,bing_chong_fang_zhi_date_6,bing_chong_fang_zhi_6,hua_tiao_date_1,hua_tiao_1,hua_tiao_date_2,hua_tiao_2,hua_tiao_date_3,hua_tiao_3,hua_tiao_date_4,hua_tiao_4,shou_hua_qi_1,shou_hua_qi_2,shou_hua_qi_3,sjq_chu_shuang,sjq_ku_shuang,qiu_geng,mark)
+        VALUES (#{id},#{belongToAccount},#{zaiPeiNianFen},#{tuRangQianZuo},#{gengDiZhengDi},#{boZhongQi},#{yiMiaoQi},#{jianMiaoQi},#{dingMiaoQi},#{zhongGengChuCao01},#{zhongGengChuCao02},#{zhongGengChuCao03},#{zhongGengChuCao04},#{zhongGengChuCao05},#{zhongGengChuCao06},#{zhongGengChuCao07},#{zhongGengChuCao08},#{zhongGengChuCao09},#{zhongGengChuCao10},#{zhongGengChuCao11},#{zhongGengChuCao12},#{peituqi},#{jiFei},#{zhuiFeiDate1},#{zhuiFei1},#{zhuiFeiDate2},#{zhuiFei2},#{zhuiFeiDate3},#{zhuiFei3},#{zhuiFeiDate4},#{zhuiFei4},#{guanGai1},#{guanGai2},#{guanGai3},#{guanGai4},#{guanGai5},#{guanGai6},#{guanGai7},#{guanGai8},#{guanGai9},#{zhengZhi1},#{zhengZhi2},#{zhengZhi3},#{daDing},#{bingChongFangZhiDate1},#{bingChongFangZhi1},#{bingChongFangZhiDate2},#{bingChongFangZhi2},#{bingChongFangZhiDate3},#{bingChongFangZhi3},#{bingChongFangZhiDate4},#{bingChongFangZhi4},#{bingChongFangZhiDate5},#{bingChongFangZhi5},#{bingChongFangZhiDate6},#{bingChongFangZhi6},#{huaTiaoDate1},#{huaTiao1},#{huaTiaoDate2},#{huaTiao2},#{huaTiaoDate3},#{huaTiao3},#{huaTiaoDate4},#{huaTiao4},#{shouHuaQi1},#{shouHuaQi2},#{shouHuaQi3},#{sjqChuShuang},#{sjqKuShuang},#{qiuGeng},#{mark})
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        UPDATE t_zpglsj SET belong_to_account=#{belongToAccount},zai_pei_nian_fen=#{zaiPeiNianFen},tu_rang_qian_zuo=#{tuRangQianZuo},geng_di_zheng_di=#{gengDiZhengDi},bo_zhong_qi=#{boZhongQi},yi_miao_qi=#{yiMiaoQi},jian_miao_qi=#{jianMiaoQi},ding_miao_qi=#{dingMiaoQi},zhong_geng_chu_cao_01=#{zhongGengChuCao01},zhong_geng_chu_cao_02=#{zhongGengChuCao02},zhong_geng_chu_cao_03=#{zhongGengChuCao03},zhong_geng_chu_cao_04=#{zhongGengChuCao04},zhong_geng_chu_cao_05=#{zhongGengChuCao05},zhong_geng_chu_cao_06=#{zhongGengChuCao06},zhong_geng_chu_cao_07=#{zhongGengChuCao07},zhong_geng_chu_cao_08=#{zhongGengChuCao08},zhong_geng_chu_cao_09=#{zhongGengChuCao09},zhong_geng_chu_cao_10=#{zhongGengChuCao10},zhong_geng_chu_cao_11=#{zhongGengChuCao11},zhong_geng_chu_cao_12=#{zhongGengChuCao12},peiTuQi=#{peituqi},ji_fei=#{jiFei},zhui_fei_date_1=#{zhuiFeiDate1},zhui_fei_1=#{zhuiFei1},zhui_fei_date_2=#{zhuiFeiDate2},zhui_fei_2=#{zhuiFei2},zhui_fei_date_3=#{zhuiFeiDate3},zhui_fei_3=#{zhuiFei3},zhui_fei_date_4=#{zhuiFeiDate4},zhui_fei_4=#{zhuiFei4},guan_gai_1=#{guanGai1},guan_gai_2=#{guanGai2},guan_gai_3=#{guanGai3},guan_gai_4=#{guanGai4},guan_gai_5=#{guanGai5},guan_gai_6=#{guanGai6},guan_gai_7=#{guanGai7},guan_gai_8=#{guanGai8},guan_gai_9=#{guanGai9},zheng_zhi_1=#{zhengZhi1},zheng_zhi_2=#{zhengZhi2},zheng_zhi_3=#{zhengZhi3},da_ding=#{daDing},bing_chong_fang_zhi_date_1=#{bingChongFangZhiDate1},bing_chong_fang_zhi_1=#{bingChongFangZhi1},bing_chong_fang_zhi_date_2=#{bingChongFangZhiDate2},bing_chong_fang_zhi_2=#{bingChongFangZhi2},bing_chong_fang_zhi_date_3=#{bingChongFangZhiDate3},bing_chong_fang_zhi_3=#{bingChongFangZhi3},bing_chong_fang_zhi_date_4=#{bingChongFangZhiDate4},bing_chong_fang_zhi_4=#{bingChongFangZhi4},bing_chong_fang_zhi_date_5=#{bingChongFangZhiDate5},bing_chong_fang_zhi_5=#{bingChongFangZhi5},bing_chong_fang_zhi_date_6=#{bingChongFangZhiDate6},bing_chong_fang_zhi_6=#{bingChongFangZhi6},hua_tiao_date_1=#{huaTiaoDate1},hua_tiao_1=#{huaTiao1},hua_tiao_date_2=#{huaTiaoDate2},hua_tiao_2=#{huaTiao2},hua_tiao_date_3=#{huaTiaoDate3},hua_tiao_3=#{huaTiao3},hua_tiao_date_4=#{huaTiaoDate4},hua_tiao_4=#{huaTiao4},shou_hua_qi_1=#{shouHuaQi1},shou_hua_qi_2=#{shouHuaQi2},shou_hua_qi_3=#{shouHuaQi3},sjq_chu_shuang=#{sjqChuShuang},sjq_ku_shuang=#{sjqKuShuang},qiu_geng=#{qiuGeng},mark=#{mark}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过ID删除单个-->
+    <delete id="deleteById">
+        DELETE FROM t_zpglsj
+        WHERE id=#{id}
+    </delete>
+
+</mapper>
