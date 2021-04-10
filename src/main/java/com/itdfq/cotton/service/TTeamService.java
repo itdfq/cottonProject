@@ -3,18 +3,18 @@ package com.itdfq.cotton.service;
 import com.github.pagehelper.PageInfo;
 import com.itdfq.cotton.model.TTeam;
 
+import java.util.List;
+
 /**
  *
  */
 public interface TTeamService {
 
-    /**
-     * 通过ID查询单个
-     *
-     * @param id ID
-     * @return {@link TTeam}
-     */
-    TTeam findById(Integer id);
+
+
+    void resert(List<String> list);
+
+
 
     /**
      * 分页查询
@@ -46,4 +46,9 @@ public interface TTeamService {
      */
     void deleteById(Integer id);
 
+    List<TTeam> findByTJ(TTeam users);
+
+    void deleteSelect(List<String> list);
+
+    List<TTeam> myselect();
 }

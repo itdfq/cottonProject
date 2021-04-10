@@ -19,9 +19,9 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">姓名</label>
+                            <label class="layui-form-label">所属账户</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="realname" autocomplete="off" class="layui-input">
+                                <input type="text" name="belongToAccount" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
@@ -55,19 +55,19 @@
 </div>
 <script src="../lib/layui-v/layui.js" charset="utf-8"></script>
 <script>
-    // $(function (){
-    //     $.ajax({
-    //         url: '/users/findByUser',
-    //         type: 'post',
-    //         success: function (data) {
-    //             if (data.msg != 1) {
-    //                 layer.msg("登录过期请重新登录", {icon: 5});
-    //                 window.self.location = "/";
-    //                 return;
-    //             }
-    //         }
-    //     })
-    // })
+    $(function (){
+        $.ajax({
+            url: '/tAdmins/findByUser',
+            type: 'post',
+            success: function (data) {
+                if (data.msg != 1) {
+                    layer.msg("登录过期请重新登录", {icon: 5});
+                    window.self.location = "/";
+                    return;
+                }
+            }
+        })
+    })
 
 
 
@@ -195,11 +195,11 @@
 
             // 执行搜索重载
 
-            table.reload('uid',{
-                url: '/users/findByTJ'
+            table.reload('id',{
+                url: '/tZpglsjs/findByTJ'
                 ,method:'post'
                 ,where: {
-                    'realname':data.field.realname,
+                    'belongToAccount':data.field.belongToAccount,
 
                 }
                 ,contentType: 'application/json'
@@ -217,183 +217,45 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
             if (obj.event === 'add') {  // 监听添加操作
-                $.ajax({
-                    url: '/users/findByUser',
-                    type: 'post',
-                    success: function (data) {
-                        if (data.msg != 1) {
-                            alert(data.msg);
-                            window.parent.location.href = "/";
-                            // $.messager.alert({
-                            //     title:'提示',
-                            //     msg:'读取数据异常：'+map.msg
-                            // });
-                            return;
-                        }else {
-                            if (data.role=="普通用户"){
-                                layer.msg("您没有权限操作", {icon: 5});
-
-                            }else{
-                                var index = layer.open({
-                                    title: '添加用户',
-                                    type: 2,
-                                    shade: 0.2,
-                                    maxmin:true,
-                                    shadeClose: true,
-                                    area: ['100%', '100%'],
-                                    content: '../page/table/addusers.html',
-                                });
-                                $(window).on("resize", function () {
-                                    layer.full(index);
-                                });
-                            }
-                        }
-                    }
-                })
+                var index = layer.open({
+                    title: '添加用户',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: '../page/table/addzpgjsj.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
 
             } else if (obj.event === 'deleteSelect') {  // 监听删除操作
-                $.ajax({
-                    url: '/users/findByUser',
-                    type: 'post',
-                    success: function (data) {
-                        if (data.msg != 1) {
-                            alert(data.msg);
-                            window.parent.location.href = "/";
-                            return;
-                        }else {
-                            if (data.role=="普通用户"){
-                                layer.msg("您没有权限操作", {icon: 5});
-
-                            }else{
-                                var data = checkStatus.data;
-                                var id="";
-                                if(data.length > 0) {
-                                    for (var i=0;i<data.length;i++) {
-                                        id+=data[i].uid+",";
-                                    }
-                                    console.log(id);
-
-                                    layer.confirm('确定删除选中的数据？', {icon: 3, title: '提示信息'}, function (index) {
-                                        $.post('/users/deleteSelect',{"id":id},function(data){
-                                            if (data.msg==1){
-                                                layer.msg("删除成功", {icon: 6});
-                                                layer.close(index);
-                                                // window.parent.location.reload();//修改成功后刷新父界面
-                                                table.render({
-                                                    elem: '#currentTableId',
-                                                    url: '/users/findByPage',
-                                                    toolbar: '#toolbarDemo',
-                                                    defaultToolbar: ['filter', 'exports', 'print', {
-                                                        title: '提示',
-                                                        icon: 'layui-icon-tips'
-                                                    }]
-                                                    ,id:"uid"
-                                                    ,cols: [[
-
-
-                                                        //                                           {type: 'checkbox', fixed: 'left',align:'center'}
-                                                        //                                           // ,{field:'custId', title:'ID', width:'10%', fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
-                                                        //                                           ,{field:'realname', title:'姓名', width:'10%' }
-                                                        //                                           // ,{field:'email', title:'邮箱', width:150, edit: 'text', templet: function(res){
-                                                        //                                           //         return '<em>'+ res.email +'</em>'
-                                                        //                                           //     }}
-                                                        //                                           ,{field:'username', title:'账号', width:'20%', sort: true, totalRow: true}
-                                                        //                                           ,{field:'password', title:'密码', width:'20%',  sort: true}
-                                                        //                                           ,{field:'phone', title:'手机号', width:'20%',  sort: true}
-                                                        //                                           ,{field:'role', title:'角色', width:'20%', sort: true, totalRow: true}
-                                                        //                                           ,{title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"},
-
-
-                                                        {type: 'checkbox', fixed: 'left',align:'center'}
-                                                        ,{field:'belongToAccount', title:'所属账户', width:150, sort: true }
-                                                        ,{field:'zaiPeiNianFen', title:'栽培年份', width:150,  sort: true}
-                                                        ,{field:'tuRangQianZuo', title:'土壤和前作', width:150,  sort: true}
-                                                        ,{field:'gengDiZhengDi', title:'耕地与征地', width:150, sort: true }
-                                                        ,{field:'boZhongQi', title:'播种期', width:150, sort: true}
-                                                        ,{field:'yiMiaoQi', title:'移苗期', width:150,  sort: true}
-                                                        ,{field:'jianMiaoQi', title:'间苗期', width:150,  sort: true}
-                                                        ,{field:'dingMiaoQi', title:'定苗期', width:150, sort: true}
-                                                        ,{field:'zhongGengChuCao01', title:'中耕除草第1次', width:150, sort: true}
-                                                        ,{field:'zhongGengChuCao02', title:'中耕除草第2次', width:150,  sort: true}
-                                                        ,{field:'zhongGengChuCao03', title:'中耕除草第3次', width:150,  sort: true}
-                                                        ,{field:'zhongGengChuCao04', title:'中耕除草第4次', width:150, sort: true}
-                                                        ,{field:'zhongGengChuCao05', title:'中耕除草第5次', width:150, sort: true}
-                                                        ,{field:'zhongGengChuCao06', title:'中耕除草第6次', width:150,  sort: true}
-                                                        ,{field:'zhongGengChuCao07', title:'中耕除草第7次', width:150,  sort: true}
-                                                        ,{field:'zhongGengChuCao08', title:'中耕除草第8次', width:150, sort: true}
-                                                        ,{field:'zhongGengChuCao09', title:'中耕除草第9次', width:150, sort: true}
-                                                        ,{field:'zhongGengChuCao10', title:'中耕除草第10次', width:150,sort: true}
-                                                        ,{field:'zhongGengChuCao11', title:'中耕除草第11次', width:150,sort: true}
-                                                        ,{field:'zhongGengChuCao12', title:'中耕除草第12次', width:150, sort: true}
-                                                        ,{field:'peituqi', title:'培土期', width:150, sort: true}
-                                                        ,{field:'jiFei', title:'施肥--基肥', width:150,  sort: true}
-                                                        ,{field:'zhuiFeiDate1', title:'施肥--追肥第1次日期', width:150,  sort: true}
-                                                        ,{field:'zhuiFei1', title:'施肥--追肥', width:150,  sort: true}
-                                                        ,{field:'zhuiFeiDate2', title:'施肥--追肥第2次日期', width:150,  sort: true}
-                                                        ,{field:'zhuiFei2', title:'施肥--追肥', width:150,  sort: true}
-                                                        ,{field:'zhuiFeiDate3', title:'施肥--追肥第3次日期', width:150,  sort: true}
-                                                        ,{field:'zhuiFei3', title:'施肥--追肥', width:150,  sort: true}
-                                                        ,{field:'zhuiFeiDate4', title:'施肥--追肥第4次日期', width:150,  sort: true}
-                                                        ,{field:'zhuiFei4', title:'施肥--基肥', width:150,  sort: true}
-                                                        ,{field:'guanGai1', title:'灌溉第1次', width:150,  sort: true}
-                                                        ,{field:'guanGai2', title:'灌溉第2次', width:150,  sort: true}
-                                                        ,{field:'guanGai3', title:'灌溉第3次', width:150,  sort: true}
-                                                        ,{field:'guanGai4', title:'灌溉第4次', width:150,  sort: true}
-                                                        ,{field:'guanGai5', title:'灌溉第5次', width:150,  sort: true}
-                                                        ,{field:'guanGai6', title:'灌溉第6次', width:150,  sort: true}
-                                                        ,{field:'guanGai7', title:'灌溉第7次', width:150,  sort: true}
-                                                        ,{field:'guanGai8', title:'灌溉第8次', width:150,  sort: true}
-                                                        ,{field:'guanGai9', title:'灌溉第9次', width:150,  sort: true}
-                                                        ,{field:'zhengZhi1', title:'整枝第1次', width:150,  sort: true}
-                                                        ,{field:'zhengZhi2', title:'整枝第2次', width:150,  sort: true}
-                                                        ,{field:'zhengZhi3', title:'整枝第3次', width:150,  sort: true}
-                                                        ,{field:'daDing', title:'打顶', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhiDate1', title:'病虫防止第1次日期', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhi1', title:'病虫防止第1次', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhiDate2', title:'病虫防止第2次日期', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhi2', title:'病虫防止第2次', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhiDate3', title:'病虫防止第3次日期', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhi3', title:'病虫防止第3次', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhiDate4', title:'病虫防止第4次日期', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhi4', title:'病虫防止第4次', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhiDate5', title:'病虫防止第5次日期', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhi5', title:'病虫防止第5次', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhiDate6', title:'病虫防止第6次日期', width:150,  sort: true}
-                                                        ,{field:'bingChongFangZhi6', title:'病虫防止第6次', width:150,  sort: true}
-                                                        ,{field:'huaTiaoDate1', title:'化调第1次日期', width:150,  sort: true}
-                                                        ,{field:'huaTiao1', title:'化调第1次', width:150,  sort: true}
-                                                        ,{field:'huaTiaoDate2', title:'化调第2次日期', width:150,  sort: true},
-                                                        ,{field:'huaTiao2', title:'化调第2次', width:150,  sort: true}
-                                                        ,{field:'huaTiaoDate3', title:'化调第3次日期', width:150,  sort: true}
-                                                        ,{field:'huaTiao3', title:'化调第3次', width:150,  sort: true},
-                                                        ,{field:'huaTiaoDate4', title:'化调第4次日期', width:150,  sort: true}
-                                                        ,{field:'huaTiao4', title:'化调第4次', width:150,  sort: true}
-                                                        ,{field:'shouHuaQi1', title:'收花期第1次', width:150,  sort: true},
-                                                        ,{field:'shouHuaQi2', title:'收花期第2次', width:150,  sort: true},
-                                                        ,{field:'shouHuaQi3', title:'收花期第3次', width:150,  sort: true},
-                                                        ,{field:'sjqChuShuang', title:'霜降期--初霜', width:150,  sort: true},
-                                                        ,{field:'sjqKuShuang', title:'霜降期--枯霜', width:150,  sort: true},
-                                                        ,{field:'qiuGeng', title:'秋耕', width:150,  sort: true},
-                                                        ,{field:'mark', title:'备注', width:150,  sort: true}
-                                                        ,{title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
-
-
-
-
-
-                                                    ]], page: true
-                                                });
-                                            }
-
-                                        });
-                                    })
-                                }else{
-                                    layer.msg('请选择需要删除的数据',{icon:5});
-                                }
-                            }
-                        }
+                var data = checkStatus.data;
+                var id="";
+                if(data.length > 0) {
+                    for (var i=0;i<data.length;i++) {
+                        id+=data[i].id+",";
                     }
-                })
+                    console.log(id);
+                    layer.confirm('确定删除选中的数据？', {icon: 3, title: '提示信息'}, function (index) {
+                        $.post('/tZpglsjs/deleteSelect',{"id":id},function(data){
+                            if (data.msg==1){
+                                layer.msg("删除成功", {icon: 6});
+                                layer.close(index);
+                                // 表格重载
+                                table.reload('id',{
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                })
+                            }
+
+                        });
+                    })
+                }else{
+                    layer.msg('请选择需要删除的数据',{icon:5});
+                }
 
             }
 
@@ -406,7 +268,7 @@
         table.on('tool(currentTableFilter)', function (obj) {
             if (obj.event === 'edit') {
                 $.ajax({
-                    url: '/users/findByUser',
+                    url: '/tAdmins/findByUser',
                     type: 'post',
                     success: function (data) {
                         if (data.msg != 1) {
@@ -430,7 +292,7 @@
                                     maxmin:true,
                                     shadeClose: true,
                                     area: ['100%', '100%'],
-                                    content: '../page/table/editusers.html',
+                                    content: '../page/table/edit_zpgjsj.html',
                                     success: function (layero, index) {
                                         //找到它的子窗口的body
                                         let body = layer.getChildFrame('body', index);
@@ -507,9 +369,6 @@
                                         body.contents().find("#sjqKuShuang").val(data.sjqKuShuang);
                                         body.contents().find("#qiuGeng").val(data.qiuGeng);
                                         body.contents().find("#mark").val(data.mark);
-
-
-
                                     }
                                 });
                                 $(window).on("resize", function () {
@@ -524,7 +383,7 @@
             } else if (obj.event === 'delete') {
 
                 $.ajax({
-                    url: '/users/findByUser',
+                    url: '/tAdmins/findByUser',
                     type: 'post',
                     success: function (data) {
                         if (data.msg != 1) {
@@ -536,7 +395,7 @@
                             // });
                             return;
                         }else {
-                            if (data.role=="普通用户"){
+                            if (data.role=="1"){
                                 layer.msg("您没有权限操作", {icon: 5});
                             }else {
                                 var data = obj.data;
@@ -544,7 +403,7 @@
                                 var datas = JSON.stringify(d);
                                 layer.confirm('真的删除行么',{icon:3, title:'提示信息'}, function (index) {
                                     $.ajax({
-                                        url: "/users/delete",
+                                        url: "/tZpglsjs/delete",
                                         type: 'post',
                                         data: datas,
                                         contentType: "application/json;charset=utf-8",

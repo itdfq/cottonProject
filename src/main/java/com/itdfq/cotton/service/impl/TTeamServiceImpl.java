@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class TTeamServiceImpl implements TTeamService {
@@ -16,10 +18,10 @@ public class TTeamServiceImpl implements TTeamService {
     @Autowired
     private TTeamDAO tTeamDAO;
 
-    @Transactional(readOnly = true)
+
     @Override
-    public TTeam findById(Integer id) {
-        return tTeamDAO.findById(id);
+    public void resert(List<String> list) {
+        tTeamDAO.reset(list);
     }
 
     @Transactional(readOnly = true)
@@ -43,5 +45,22 @@ public class TTeamServiceImpl implements TTeamService {
     public void deleteById(Integer id) {
         tTeamDAO.deleteById(id);
     }
+
+    @Override
+    public List<TTeam> findByTJ(TTeam tTeam) {
+        return tTeamDAO.findByTJ(tTeam);
+    }
+
+    @Override
+    public void deleteSelect(List<String> list) {
+        tTeamDAO.deleteSelect(list);
+    }
+
+    @Override
+    public List<TTeam> myselect() {
+        List<TTeam> myselect = tTeamDAO.myselect();
+        return myselect;
+    }
+
 
 }

@@ -10,7 +10,9 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,22 +50,87 @@ public class TZpglsjController {
         }
         return map;
     }
+    @RequestMapping("/findByTJ")
+    @ApiOperation("分页条件查询")
+    public Map<String,Object> findByTJ(@ApiParam("页号") @RequestParam(defaultValue = "1") Integer page,
+                                         @ApiParam("每页大小") @RequestParam(defaultValue = "10") Integer limit,@RequestBody TZpglsj tZpglsj) {
+        map.clear();
+        try {
+            PageInfo<TZpglsj> byPage = tZpglsjService.findByTJ(page, limit,tZpglsj);
+            map.put("count",byPage.getTotal());
+            map.put("data",byPage.getList());
+            map.put("code",0);
+            map.put("msg",1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
 
-    @PostMapping
+
+    @RequestMapping("/insert")
     @ApiOperation("新增")
-    public void insert(@RequestBody TZpglsj tZpglsj) {
-        tZpglsjService.insert(tZpglsj);
+    public Map<String,Object> insert(@RequestBody TZpglsj tZpglsj) {
+        System.out.println(tZpglsj);
+        map.clear();
+        try {
+            tZpglsjService.insert(tZpglsj);
+            map.put("msg",1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("msg",e.getMessage());
+        }
+        return map;
+
     }
 
-    @PutMapping
+    @RequestMapping("/update")
     @ApiOperation("修改")
-    public void update(@RequestBody TZpglsj tZpglsj) {
-        tZpglsjService.update(tZpglsj);
+    public Map<String,Object> update(@RequestBody TZpglsj tZpglsj) {
+        System.out.println(tZpglsj);
+
+        map.clear();
+        try {
+            tZpglsjService.update(tZpglsj);
+            map.put("msg",1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("msg",e.getMessage());
+        }
+        return map;
     }
 
-    @DeleteMapping("/{id}")
+    @RequestMapping("/delete")
     @ApiOperation("通过ID删除单个")
-    public void deleteById(@ApiParam("ID") @PathVariable("id") Integer id) {
-        tZpglsjService.deleteById(id);
+    public Map<String,Object> deleteById(@RequestBody TZpglsj tZpglsj) {
+        map.clear();
+        try {
+            tZpglsjService.deleteById(tZpglsj.getId());
+            map.put("msg",1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
+
+    //    批量删除
+    @RequestMapping("/deleteSelect")
+    public Map<String,Object> deleteSelect(String id){
+        map.clear();
+        try {
+            List<String> list = new ArrayList<>();
+            String[] strs = id.split(",");
+            for (String str : strs) {
+                list.add(str);
+            }
+            tZpglsjService.deleteSelect(list);
+            map.put("msg",1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("msg",e.getMessage());
+        }
+        return map;
     }
 }

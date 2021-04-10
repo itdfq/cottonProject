@@ -20,10 +20,16 @@
         <result property="headImgName" column="head_img_name"/>
     </resultMap>
 
-    <!--通过ID查询单个-->
-    <select id="findById" resultMap="tTeamMap">
-        SELECT id,username,password,role,aaccount_state,tel,team_name,real_name,email,address_province,address_city,address_district,address_detail,mark,head_img_name FROM t_team
-        WHERE id=#{id}
+    <update id="reset">
+        update  t_team set password = 666 where id  in
+        <foreach collection='list' item='custId' open='(' close=')' separator=','>
+            #{custId}
+        </foreach>
+    </update>
+
+    <!--分页条件查询-->
+    <select id="findByTJ" resultMap="tTeamMap">
+        SELECT id,username,password,role,aaccount_state,tel,team_name,real_name,email,address_province,address_city,address_district,address_detail,mark,head_img_name FROM t_team where tel = #{tel}
     </select>
 
     <!--分页查询-->
@@ -33,8 +39,8 @@
 
     <!--新增-->
     <insert id="insert">
-        INSERT INTO t_team(id,username,password,role,aaccount_state,tel,team_name,real_name,email,address_province,address_city,address_district,address_detail,mark,head_img_name)
-        VALUES (#{id},#{username},#{password},#{role},#{aaccountState},#{tel},#{teamName},#{realName},#{email},#{addressProvince},#{addressCity},#{addressDistrict},#{addressDetail},#{mark},#{headImgName})
+        INSERT INTO t_team(username,password,role,aaccount_state,tel,team_name,real_name,email,address_province,address_city,address_district,address_detail,mark,head_img_name)
+        VALUES (#{username},#{password},#{role},#{aaccountState},#{tel},#{teamName},#{realName},#{email},#{addressProvince},#{addressCity},#{addressDistrict},#{addressDetail},#{mark},#{headImgName})
     </insert>
 
     <!--修改-->
@@ -48,5 +54,19 @@
         DELETE FROM t_team
         WHERE id=#{id}
     </delete>
+
+    <delete id="deleteSelect" >
+        delete from t_team  where id  in
+        <foreach collection='list' item='custId' open='(' close=')' separator=','>
+         #{custId}
+        </foreach>
+    </delete>
+
+    <select id="myselect" resultMap="tTeamMap">
+        SELECT distinct username  FROM t_team
+    </select>
+
+
+
 
 </mapper>

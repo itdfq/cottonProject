@@ -1,20 +1,19 @@
 package com.itdfq.cotton.dao;
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.itdfq.cotton.model.TTeam;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  *
  */
 public interface TTeamDAO {
 
-    /**
-     * 通过ID查询单个
-     *
-     * @param id ID
-     * @return {@link TTeam}
-     */
-    TTeam findById(Integer id);
+
+    void reset(List<String> list);
 
     /**
      * 分页查询
@@ -44,4 +43,9 @@ public interface TTeamDAO {
      */
     void deleteById(Integer id);
 
+    List<TTeam> findByTJ(TTeam tTeam);
+
+    void deleteSelect(List<String> list);
+
+    List<TTeam> myselect();
 }

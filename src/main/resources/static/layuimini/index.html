@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>宿舍管理系统</title>
+    <title>棉花田间记载数据管理系统</title>
 
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -24,20 +24,25 @@
     <style id="layuimini-bg-color">
     </style>
     <script>
-        // $(function (){
-        //     $.ajax({
-        //         url: '/tAdmins/findByUser',
-        //         type: 'post',
-        //         success: function (data) {
-        //             if (data.msg != 1) {
-        //                 layer.msg("登录过期请重新登录", {icon: 5});
-        //                 window.self.location = "/";
-        //
-        //                 return;
-        //             }
-        //         }
-        //     })
-        // })
+        $(function (){
+            $.ajax({
+                url: '/tAdmins/findByUser',
+                type: 'post',
+                success: function (data) {
+                    if (data.msg != 1) {
+                        // layer.msg('也可以这样', {
+                        //     time: 20000, //20s后自动关闭
+                        //     btn: ['明白了', '知道了']
+                        // });
+                        // layer.msg("登录过期请重新登录", {time:3000,icon: 5});
+                        alert("登录过期，请重新登录")
+                        window.self.location = "/";
+
+                        return;
+                    }
+                }
+            })
+        })
 
     </script>
 </head>

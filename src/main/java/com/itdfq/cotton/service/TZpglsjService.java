@@ -3,6 +3,8 @@ package com.itdfq.cotton.service;
 import com.github.pagehelper.PageInfo;
 import com.itdfq.cotton.model.TZpglsj;
 
+import java.util.List;
+
 /**
  *
  */
@@ -46,4 +48,7 @@ public interface TZpglsjService {
      */
     void deleteById(Integer id);
 
+    PageInfo<TZpglsj> findByTJ(Integer page, Integer limit, TZpglsj tZpglsj);
+
+    void deleteSelect(List<String> list);
 }

@@ -1,5 +1,6 @@
 package com.itdfq.cotton.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -18,6 +19,8 @@ public class TZpglsj {
     /**
      *
      */
+
+    @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zaiPeiNianFen;
     /**
      *
@@ -30,86 +33,107 @@ public class TZpglsj {
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date boZhongQi;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date yiMiaoQi;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date jianMiaoQi;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date dingMiaoQi;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao01;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao02;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao03;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao04;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao05;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao06;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao07;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao08;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao09;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao10;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao11;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhongGengChuCao12;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date peituqi;
     /**
      *
      */
+
     private String jiFei;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhuiFeiDate1;
     /**
      *
      */
+
     private String zhuiFei1;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhuiFeiDate2;
     /**
      *
@@ -118,6 +142,7 @@ public class TZpglsj {
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhuiFeiDate3;
     /**
      *
@@ -126,6 +151,7 @@ public class TZpglsj {
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhuiFeiDate4;
     /**
      *
@@ -134,58 +160,72 @@ public class TZpglsj {
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai1;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai2;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai3;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai4;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai5;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai6;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai7;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai8;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date guanGai9;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhengZhi1;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhengZhi2;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date zhengZhi3;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date daDing;
     /**
      *
      */
+      @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date bingChongFangZhiDate1;
     /**
      *
@@ -193,7 +233,7 @@ public class TZpglsj {
     private String bingChongFangZhi1;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date bingChongFangZhiDate2;
     /**
      *
@@ -201,7 +241,7 @@ public class TZpglsj {
     private String bingChongFangZhi2;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date bingChongFangZhiDate3;
     /**
      *
@@ -209,7 +249,7 @@ public class TZpglsj {
     private String bingChongFangZhi3;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date bingChongFangZhiDate4;
     /**
      *
@@ -217,7 +257,7 @@ public class TZpglsj {
     private String bingChongFangZhi4;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date bingChongFangZhiDate5;
     /**
      *
@@ -225,7 +265,7 @@ public class TZpglsj {
     private String bingChongFangZhi5;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date bingChongFangZhiDate6;
     /**
      *
@@ -233,7 +273,7 @@ public class TZpglsj {
     private String bingChongFangZhi6;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date huaTiaoDate1;
     /**
      *
@@ -241,7 +281,7 @@ public class TZpglsj {
     private String huaTiao1;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date huaTiaoDate2;
     /**
      *
@@ -249,7 +289,7 @@ public class TZpglsj {
     private String huaTiao2;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date huaTiaoDate3;
     /**
      *
@@ -257,7 +297,7 @@ public class TZpglsj {
     private String huaTiao3;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date huaTiaoDate4;
     /**
      *
@@ -265,27 +305,27 @@ public class TZpglsj {
     private String huaTiao4;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date shouHuaQi1;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date shouHuaQi2;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date shouHuaQi3;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date sjqChuShuang;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date sjqKuShuang;
     /**
      *
-     */
+     */  @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date qiuGeng;
     /**
      *
