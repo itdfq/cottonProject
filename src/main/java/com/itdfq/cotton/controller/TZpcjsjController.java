@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  */
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/tZpcjsjs")
 @Api(tags = "")
 public class TZpcjsjController {
+
+    private Map<String,Object> map = new HashMap<>();
     @Autowired
     private TZpcjsjService tZpcjsjService;
 
@@ -25,11 +30,22 @@ public class TZpcjsjController {
         return tZpcjsjService.findById(id);
     }
 
-    @GetMapping
+    @RequestMapping("/findByPage")
     @ApiOperation("分页查询")
-    public PageInfo<TZpcjsj> findByPage(@ApiParam("页号") @RequestParam(defaultValue = "1") Integer pageNum,
-                                        @ApiParam("每页大小") @RequestParam(defaultValue = "10") Integer pageSize) {
-        return tZpcjsjService.findByPage(pageNum, pageSize);
+    public Map<String,Object> findByPage(@ApiParam("页号") @RequestParam(defaultValue = "1") Integer page,
+                                         @ApiParam("每页大小") @RequestParam(defaultValue = "10") Integer limit) {
+        map.clear();
+        try {
+            PageInfo<TZpcjsj> byPage = tZpcjsjService.findByPage(page, limit);
+            map.put("count",byPage.getTotal());
+            map.put("data",byPage.getList());
+            map.put("code",0);
+            map.put("msg",1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("msg",e.getMessage());
+        }
+        return map;
     }
 
     @PostMapping

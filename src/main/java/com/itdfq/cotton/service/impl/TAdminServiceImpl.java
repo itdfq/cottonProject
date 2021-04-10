@@ -44,4 +44,9 @@ public class TAdminServiceImpl implements TAdminService {
         tAdminDAO.deleteById(id);
     }
 
+    @Override
+    public TAdmin findByUsername(String username) {
+        return tAdminDAO.findByUsername(username);
+    }
+
 }
