@@ -3,6 +3,7 @@ package com.itdfq.cotton.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.itdfq.cotton.model.TAdmin;
+import com.itdfq.cotton.model.TTeam;
 import com.itdfq.cotton.service.TAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +33,7 @@ public class TAdminController {
     @RequestMapping("/findByUser")
     public Map<String,Object> findByUser(HttpSession session){
         try {
-            TAdmin user = (TAdmin) session.getAttribute("user");
+            TTeam user = (TTeam) session.getAttribute("user");
             if (user==null){
                 map.put("msg","用户登录异常，请重新登录");
                 return map;
@@ -91,28 +92,7 @@ public class TAdminController {
     }
 
 
-    @RequestMapping("/login") Map<String,Object> login(@RequestBody TAdmin tAdmin,HttpServletRequest request){
-        map.clear();
-        TAdmin byUsername = null;
-        try {
-            byUsername = tAdminService.findByUsername(tAdmin.getUsername());
-            if (byUsername==null) {
-                map.put("msg", "用户不存在");
-            }else {
-                if (byUsername.getPassword().equals(tAdmin.getPassword())) {
-                    map.put("msg", 1);
-                    map.put("role",byUsername.getRole());
-                    request.getSession().setAttribute("user", byUsername);
-                } else {
-                    map.put("msg", "密码不正确");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            map.put("msg",e.getMessage());
-        }
-        return map;
-    }
+
 
 
 }

@@ -531,10 +531,9 @@
                     // console.log(userList.data);
                     // alert(userList.data[3].custIndustry);
                     // alert(userList.data.length);
-                    var unitObj=document.getElementById("#daddress"); //页面上的<html:select>元素
                     if(userList.data!=null){ //后台传回来的select选项
                         for(var i=0;i<userList.data.length;i++){
-                            $("#daddress").append("<option value='" + userList.data[i].username + "'>" + userList.data[i].username + "</option>");
+                            $("#belongToAccount").append("<option value='" + userList.data[i].username + "'>" + userList.data[i].username + "</option>");
                         }
                         layui.use('form', function () {
                             var form = layui.form;

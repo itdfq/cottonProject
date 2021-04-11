@@ -1,5 +1,6 @@
 package com.itdfq.cotton.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.Date;
 /**
  *
  */
-@Data
+
 public class TZpcjsj {
     /**
      *
@@ -16,7 +17,8 @@ public class TZpcjsj {
     /**
      * 年份
      */
-    private Date nianFen;
+    @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
+    private String nianFen;
     /**
      * 行号
      */
@@ -36,34 +38,37 @@ public class TZpcjsj {
     /**
      * 长度
      */
-    private Object changDu;
+    private String changDu;
     /**
      * 比强
      */
-    private Object biQiang;
+    private String biQiang;
     /**
      * 马值
      */
-    private Object maZhi;
+    private String maZhi;
     /**
      * 铃重
      */
-    private Object lingZhong;
+    private String lingZhong;
     /**
      * 衣分
      */
-    private Object yiFen;
+    private String yiFen;
     /**
      * 出苗期
      */
+    @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date chuMiaoQi;
     /**
      * 开花期
      */
+    @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date kaiHuaQi;
     /**
      *
      */
+    @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date tuXuQi;
     /**
      *
@@ -134,11 +139,11 @@ public class TZpcjsj {
         this.id = id;
     }
 
-    public Date getNianFen() {
+    public String getNianFen() {
         return nianFen;
     }
 
-    public void setNianFen(Date nianFen) {
+    public void setNianFen(String nianFen) {
         this.nianFen = nianFen;
     }
 
@@ -174,43 +179,43 @@ public class TZpcjsj {
         this.laiYuan = laiYuan;
     }
 
-    public Object getChangDu() {
+    public String getChangDu() {
         return changDu;
     }
 
-    public void setChangDu(Object changDu) {
+    public void setChangDu(String changDu) {
         this.changDu = changDu;
     }
 
-    public Object getBiQiang() {
+    public String getBiQiang() {
         return biQiang;
     }
 
-    public void setBiQiang(Object biQiang) {
+    public void setBiQiang(String biQiang) {
         this.biQiang = biQiang;
     }
 
-    public Object getMaZhi() {
+    public String getMaZhi() {
         return maZhi;
     }
 
-    public void setMaZhi(Object maZhi) {
+    public void setMaZhi(String maZhi) {
         this.maZhi = maZhi;
     }
 
-    public Object getLingZhong() {
+    public String getLingZhong() {
         return lingZhong;
     }
 
-    public void setLingZhong(Object lingZhong) {
+    public void setLingZhong(String lingZhong) {
         this.lingZhong = lingZhong;
     }
 
-    public Object getYiFen() {
+    public String getYiFen() {
         return yiFen;
     }
 
-    public void setYiFen(Object yiFen) {
+    public void setYiFen(String yiFen) {
         this.yiFen = yiFen;
     }
 

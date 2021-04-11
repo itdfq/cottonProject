@@ -3,6 +3,8 @@ package com.itdfq.cotton.dao;
 import com.github.pagehelper.Page;
 import com.itdfq.cotton.model.TZpcjsj;
 
+import java.util.List;
+
 /**
  *
  */
@@ -44,4 +46,7 @@ public interface TZpcjsjDAO {
      */
     void deleteById(Integer id);
 
+    Page<TZpcjsj> findByTJ(TZpcjsj tZpcjsj);
+
+    void deleteSelect(List<String> list);
 }

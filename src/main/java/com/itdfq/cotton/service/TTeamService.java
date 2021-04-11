@@ -1,6 +1,7 @@
 package com.itdfq.cotton.service;
 
 import com.github.pagehelper.PageInfo;
+import com.itdfq.cotton.model.TAdmin;
 import com.itdfq.cotton.model.TTeam;
 
 import java.util.List;
@@ -51,4 +52,7 @@ public interface TTeamService {
     void deleteSelect(List<String> list);
 
     List<TTeam> myselect();
+
+
+    TTeam findByUsername(String username);
 }

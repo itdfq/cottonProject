@@ -3,6 +3,8 @@ package com.itdfq.cotton.service;
 import com.github.pagehelper.PageInfo;
 import com.itdfq.cotton.model.TZpcjsj;
 
+import java.util.List;
+
 /**
  *
  */
@@ -26,6 +28,14 @@ public interface TZpcjsjService {
     PageInfo<TZpcjsj> findByPage(int pageNum, int pageSize);
 
     /**
+     * 分页条件查询
+     *
+     * @param pageNum  页号
+     * @param pageSize 每页大小
+     * @return {@link TZpcjsj}
+     */
+    PageInfo<TZpcjsj> findByTJ(int pageNum, int pageSize,TZpcjsj tZpcjsj);
+    /**
      * 新增
      *
      * @param tZpcjsj
@@ -46,4 +56,5 @@ public interface TZpcjsjService {
      */
     void deleteById(Integer id);
 
+    void deleteSelect(List<String> list);
 }

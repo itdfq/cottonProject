@@ -45,12 +45,7 @@ public interface TAdminService {
      */
     void deleteById(Integer id);
 
-    /**
-     * 通过username查询单个
-     *
-     * @param String username
-     * @return {@link TAdmin}
-     */
-    TAdmin findByUsername(String username);
+
+
 
 }

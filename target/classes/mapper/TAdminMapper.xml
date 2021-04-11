@@ -40,9 +40,7 @@
         WHERE id=#{id}
     </delete>
 
-    <select id="findByUsername" resultMap="tAdminMap">
-        SELECT id,username,password,role,tel,head_img_name FROM t_admin
-        WHERE username=#{username}
-    </select>
+
+
 
 </mapper>

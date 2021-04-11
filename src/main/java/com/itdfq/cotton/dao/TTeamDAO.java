@@ -2,6 +2,7 @@ package com.itdfq.cotton.dao;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import com.itdfq.cotton.model.TAdmin;
 import com.itdfq.cotton.model.TTeam;
 import org.apache.ibatis.annotations.Select;
 
@@ -48,4 +49,6 @@ public interface TTeamDAO {
     void deleteSelect(List<String> list);
 
     List<TTeam> myselect();
+
+    TTeam findByUsername(String username);
 }

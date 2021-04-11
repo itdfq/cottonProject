@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class TZpcjsjServiceImpl implements TZpcjsjService {
@@ -30,6 +32,12 @@ public class TZpcjsjServiceImpl implements TZpcjsjService {
     }
 
     @Override
+    public PageInfo<TZpcjsj> findByTJ(int pageNum, int pageSize, TZpcjsj tZpcjsj) {
+        PageHelper.startPage(pageNum, pageSize);
+        return PageInfo.of(tZpcjsjDAO.findByTJ(tZpcjsj));
+    }
+
+    @Override
     public void insert(TZpcjsj tZpcjsj) {
         tZpcjsjDAO.insert(tZpcjsj);
     }
@@ -42,6 +50,11 @@ public class TZpcjsjServiceImpl implements TZpcjsjService {
     @Override
     public void deleteById(Integer id) {
         tZpcjsjDAO.deleteById(id);
+    }
+
+    @Override
+    public void deleteSelect(List<String> list) {
+        tZpcjsjDAO.deleteSelect(list);
     }
 
 }

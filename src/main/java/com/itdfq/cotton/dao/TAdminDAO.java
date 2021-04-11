@@ -9,7 +9,7 @@ import com.itdfq.cotton.model.TAdmin;
 public interface TAdminDAO {
 
 
-    TAdmin findByUsername(String username);
+
 
     /**
      * 通过ID查询单个

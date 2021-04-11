@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -157,6 +158,30 @@ public class TTeamController {
         }
         return map;
 
+    }
+
+    @RequestMapping("/login") Map<String,Object> login(@RequestBody TTeam tTeam, HttpServletRequest request){
+
+        map.clear();
+        TTeam byUsername = null;
+        try {
+            byUsername = tTeamService.findByUsername(tTeam.getUsername());
+            if (byUsername==null) {
+                map.put("msg", "用户不存在");
+            }else {
+                if (byUsername.getPassword().equals(tTeam.getPassword())) {
+                    map.put("msg", 1);
+                    map.put("role",byUsername.getRole());
+                    request.getSession().setAttribute("user", byUsername);
+                } else {
+                    map.put("msg", "密码不正确");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("msg",e.getMessage());
+        }
+        return map;
     }
 
 }

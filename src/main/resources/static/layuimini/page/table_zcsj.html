@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <title>layui</title>
+    <title>栽培管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,14 +14,20 @@
     <div class="layuimini-main">
 
         <fieldset class="table-search-fieldset">
-            <legend>搜索信息</legend>
+            <legend>栽培管理</legend>
             <div style="margin: 10px 10px 10px 10px">
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">姓名</label>
+                            <label class="layui-form-label">品种名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="realname" autocomplete="off" class="layui-input">
+                                <input type="text" name="zhongMing" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">年份</label>
+                            <div class="layui-input-inline">
+                                <input type="date" name="nianFen" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
@@ -35,7 +41,7 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container" id="gongju">
-<!--                <a th:if="${session.user.realname}" ><span th:text="${session.user.realname}"/></a>-->
+                <!--                <a th:if="${session.user.realname}" ><span th:text="${session.user.realname}"/></a>-->
                 <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
                 <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="deleteSelect">删除选中行数据</button>
             </div>
@@ -68,10 +74,16 @@
     //         }
     //     })
     // })
+
+
+
     layui.use(['form', 'table'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
+
+
+        //表格界面
         table.render({
             elem: '#currentTableId',
             url: '/tZpcjsjs/findByPage',
@@ -84,7 +96,7 @@
             ,cols: [[
                 {type: 'checkbox', fixed: 'left',align:'center'}
                 // ,{field:'custId', title:'ID', width:'10%', fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
-                ,{field:'nianFen', title:'年份', width:'15%' }
+                ,{field:'nianFen', title:'年份', width:'15%' , sort: true}
                 // ,{field:'email', title:'邮箱', width:150, edit: 'text', templet: function(res){
                 //         return '<em>'+ res.email +'</em>'
                 //     }}
@@ -115,8 +127,12 @@
                 ,{field:'huangWeiBingZhi', title:'抗病性--黄萎病指', width:'15%',  sort: true}
                 ,{field:'tianJianJueXuan', title:'田间决选', width:'15%',  sort: true}
                 ,{field:'mark', title:'备注', width:'15%',  sort: true}
+                ,{title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]], page: true
         });
+
+
+
 
         // $(function (){
         //     $.ajax({
@@ -128,10 +144,9 @@
         //                 window.self.location = "/";
         //                 return;
         //             }else{
-        //                 if (data.role!="管理员"){
+        //                 if (data.role!=1){
         //                     layer.msg("对不起您无权限查看", {icon: 5});
         //                 }else{
-        //
         //                 }
         //             }
         //         }
@@ -148,12 +163,12 @@
 
             // 执行搜索重载
 
-            table.reload('uid',{
-                url: '/users/findByTJ'
+            table.reload('id',{
+                url: '/tZpcjsjs/findByTJ'
                 ,method:'post'
                 ,where: {
-                    'realname':data.field.realname,
-
+                    'zhongMing':data.field.zhongMing,
+                    'nianFen':data.field.nianFen
                 }
                 ,contentType: 'application/json'
                 ,page: {
@@ -170,102 +185,45 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
             if (obj.event === 'add') {  // 监听添加操作
-                $.ajax({
-                    url: '/users/findByUser',
-                    type: 'post',
-                    success: function (data) {
-                        if (data.msg != 1) {
-                            alert(data.msg);
-                            window.parent.location.href = "/";
-                            // $.messager.alert({
-                            //     title:'提示',
-                            //     msg:'读取数据异常：'+map.msg
-                            // });
-                            return;
-                        }else {
-                            if (data.role=="普通用户"){
-                                layer.msg("您没有权限操作", {icon: 5});
-
-                            }else{
-                                var index = layer.open({
-                                    title: '添加用户',
-                                    type: 2,
-                                    shade: 0.2,
-                                    maxmin:true,
-                                    shadeClose: true,
-                                    area: ['100%', '100%'],
-                                    content: '../page/table/addusers.html',
-                                });
-                                $(window).on("resize", function () {
-                                    layer.full(index);
-                                });
-                            }
-                        }
-                    }
-                })
+                var index = layer.open({
+                    title: '添加用户',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: '../page/table/addzcsj.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
 
             } else if (obj.event === 'deleteSelect') {  // 监听删除操作
-                $.ajax({
-                    url: '/users/findByUser',
-                    type: 'post',
-                    success: function (data) {
-                        if (data.msg != 1) {
-                            alert(data.msg);
-                            window.parent.location.href = "/";
-                            return;
-                        }else {
-                            if (data.role=="普通用户"){
-                                layer.msg("您没有权限操作", {icon: 5});
-
-                            }else{
-                                var data = checkStatus.data;
-                                var id="";
-                                if(data.length > 0) {
-                                    for (var i=0;i<data.length;i++) {
-                                        id+=data[i].uid+",";
-                                    }
-                                    console.log(id);
-
-                                    layer.confirm('确定删除选中的数据？', {icon: 3, title: '提示信息'}, function (index) {
-                                        $.post('/users/deleteSelect',{"id":id},function(data){
-                                            if (data.msg==1){
-                                                layer.msg("删除成功", {icon: 6});
-                                                layer.close(index);
-                                                // window.parent.location.reload();//修改成功后刷新父界面
-                                                table.render({
-                                                    elem: '#currentTableId',
-                                                    url: '/users/findByPage',
-                                                    toolbar: '#toolbarDemo',
-                                                    defaultToolbar: ['filter', 'exports', 'print', {
-                                                        title: '提示',
-                                                        icon: 'layui-icon-tips'
-                                                    }]
-                                                    ,id:"uid"
-                                                    ,cols: [[
-                                                        {type: 'checkbox', fixed: 'left',align:'center'}
-                                                        // ,{field:'custId', title:'ID', width:'10%', fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
-                                                        ,{field:'realname', title:'姓名', width:'10%' }
-                                                        // ,{field:'email', title:'邮箱', width:150, edit: 'text', templet: function(res){
-                                                        //         return '<em>'+ res.email +'</em>'
-                                                        //     }}
-                                                        ,{field:'username', title:'账号', width:'20%', sort: true, totalRow: true}
-                                                        ,{field:'password', title:'密码', width:'20%',  sort: true}
-                                                        ,{field:'phone', title:'手机号', width:'20%',  sort: true}
-                                                        ,{field:'role', title:'角色', width:'20%', sort: true, totalRow: true}
-                                                        ,{title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
-                                                    ]], page: true
-                                                });
-                                            }
-
-                                        });
-                                    })
-                                }else{
-                                    layer.msg('请选择需要删除的数据',{icon:5});
-                                }
-                            }
-                        }
+                var data = checkStatus.data;
+                var id="";
+                if(data.length > 0) {
+                    for (var i=0;i<data.length;i++) {
+                        id+=data[i].id+",";
                     }
-                })
+                    console.log(id);
+                    layer.confirm('确定删除选中的数据？', {icon: 3, title: '提示信息'}, function (index) {
+                        $.post('/tZpcjsjs/deleteSelect',{"id":id},function(data){
+                            if (data.msg==1){
+                                layer.msg("删除成功", {icon: 6});
+                                layer.close(index);
+                                // 表格重载
+                                table.reload('id',{
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                })
+                            }
+
+                        });
+                    })
+                }else{
+                    layer.msg('请选择需要删除的数据',{icon:5});
+                }
 
             }
 
@@ -278,7 +236,7 @@
         table.on('tool(currentTableFilter)', function (obj) {
             if (obj.event === 'edit') {
                 $.ajax({
-                    url: '/users/findByUser',
+                    url: '/tAdmins/findByUser',
                     type: 'post',
                     success: function (data) {
                         if (data.msg != 1) {
@@ -290,7 +248,7 @@
                             // });
                             return;
                         }else {
-                            if (data.role=="普通用户"){
+                            if (data.role=="1"){
                                 layer.msg("您没有权限操作", {icon: 5});
 
                             }else{
@@ -302,19 +260,41 @@
                                     maxmin:true,
                                     shadeClose: true,
                                     area: ['100%', '100%'],
-                                    content: '../page/table/editusers.html',
+                                    content: '../page/table/edit_zcsj.html',
                                     success: function (layero, index) {
                                         //找到它的子窗口的body
                                         let body = layer.getChildFrame('body', index);
                                         // var body = layer.getChildFrame('body', table);  //巧妙的地方在这里哦
                                         // //为子窗口元素赋值
-                                        body.contents().find("#uid").val(data.uid);
-                                        body.contents().find("#realname").val(data.realname);
-                                        body.contents().find("#username").val(data.username);
-                                        body.contents().find("#password").val(data.password);
-                                        body.contents().find("#role").val(data.role);
-                                        body.contents().find("#phone").val(data.phone);
-
+                                        body.contents().find("#id").val(data.id);
+                                        body.contents().find("#nianFen").val(data.nianFen);
+                                        body.contents().find("#hangHao").val(data.hangHao);
+                                        body.contents().find("#belongToAccount").val(data.belongToAccount);
+                                        body.contents().find("#zhongMing").val(data.zhongMing);
+                                        body.contents().find("#laiYuan").val(data.laiYuan);
+                                        body.contents().find("#changDu").val(data.changDu);
+                                        body.contents().find("#biQiang").val(data.biQiang);
+                                        body.contents().find("#maZhi").val(data.maZhi);
+                                        body.contents().find("#lingZhong").val(data.lingZhong);
+                                        body.contents().find("#yiFen").val(data.yiFen);
+                                        body.contents().find("#chuMiaoQi").val(data.chuMiaoQi);
+                                        body.contents().find("#kaiHuaQi").val(data.kaiHuaQi);
+                                        body.contents().find("#tuXuQi").val(data.tuXuQi);
+                                        body.contents().find("#szsMiaoQi").val(data.szsMiaoQi);
+                                        body.contents().find("#szsHuaQi").val(data.szsHuaQi);
+                                        body.contents().find("#zqdMiaoQi").val(data.zqdMiaoQi);
+                                        body.contents().find("#zqdHuaQi").val(data.zqdHuaQi);
+                                        body.contents().find("#shouHuoZhuShu").val(data.shouHuoZhuShu);
+                                        body.contents().find("#zytxZhuXing").val(data.zytxZhuXing);
+                                        body.contents().find("#zytxYeXing").val(data.zytxYeXing);
+                                        body.contents().find("#zytxLingXing").val(data.zytxLingXing);
+                                        body.contents().find("#zytxZhuGao").val(data.zytxZhuGao);
+                                        body.contents().find("#zytxJieLingXing").val(data.zytxJieLingXing);
+                                        body.contents().find("#zytxYeXuXing").val(data.zytxYeXuXing);
+                                        body.contents().find("#kuWeiBingZhi").val(data.kuWeiBingZhi);
+                                        body.contents().find("#huangWeiBingZhi").val(data.huangWeiBingZhi);
+                                        body.contents().find("#tianJianJueXuan").val(data.tianJianJueXuan);
+                                        body.contents().find("#mark").val(data.mark);
                                     }
                                 });
                                 $(window).on("resize", function () {
@@ -329,7 +309,7 @@
             } else if (obj.event === 'delete') {
 
                 $.ajax({
-                    url: '/users/findByUser',
+                    url: '/tAdmins/findByUser',
                     type: 'post',
                     success: function (data) {
                         if (data.msg != 1) {
@@ -341,15 +321,15 @@
                             // });
                             return;
                         }else {
-                            if (data.role=="普通用户"){
+                            if (data.role=="1"){
                                 layer.msg("您没有权限操作", {icon: 5});
                             }else {
                                 var data = obj.data;
-                                var d = {"uid": data.uid};
+                                var d = {"id": data.id};
                                 var datas = JSON.stringify(d);
                                 layer.confirm('真的删除行么',{icon:3, title:'提示信息'}, function (index) {
                                     $.ajax({
-                                        url: "/users/delete",
+                                        url: "/tZpcjsjs/delete",
                                         type: 'post',
                                         data: datas,
                                         contentType: "application/json;charset=utf-8",

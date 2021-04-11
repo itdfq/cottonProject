@@ -20,7 +20,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">账户所属</label>
         <div class="layui-input-inline">
-            <select name="daddress"  id="daddress">
+            <select name="belongToAccount"  id="belongToAccount">
                 <option disabled>请选择一个账户</option>
                 <!--                <option value="">全部</option>&ndash;&gt;-->
                 <!--                                    <option value="010">北京</option>-->
@@ -531,10 +531,9 @@
                     // console.log(userList.data);
                     // alert(userList.data[3].custIndustry);
                     // alert(userList.data.length);
-                    var unitObj=document.getElementById("#daddress"); //页面上的<html:select>元素
                     if(userList.data!=null){ //后台传回来的select选项
                         for(var i=0;i<userList.data.length;i++){
-                            $("#daddress").append("<option value='" + userList.data[i].username + "'>" + userList.data[i].username + "</option>");
+                            $("#belongToAccount").append("<option value='" + userList.data[i].username + "'>" + userList.data[i].username + "</option>");
                         }
                         layui.use('form', function () {
                             var form = layui.form;

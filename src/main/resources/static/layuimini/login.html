@@ -130,7 +130,7 @@
             $('#loginBtn').val("正在登录...");
             var d={"username":loginUsername,"password":loginPassword};
             $.ajax({
-                url:'tAdmins/login',
+                url:'tTeams/login',
                 data:JSON.stringify(d),
                 type:"post",
                 dataType:'json',

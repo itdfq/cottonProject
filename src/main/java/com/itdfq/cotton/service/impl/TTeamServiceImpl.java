@@ -3,6 +3,7 @@ package com.itdfq.cotton.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.itdfq.cotton.dao.TTeamDAO;
+import com.itdfq.cotton.model.TAdmin;
 import com.itdfq.cotton.model.TTeam;
 import com.itdfq.cotton.service.TTeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,11 @@ public class TTeamServiceImpl implements TTeamService {
     public List<TTeam> myselect() {
         List<TTeam> myselect = tTeamDAO.myselect();
         return myselect;
+    }
+
+    @Override
+    public TTeam findByUsername(String username) {
+        return tTeamDAO.findByUsername(username);
     }
 
 

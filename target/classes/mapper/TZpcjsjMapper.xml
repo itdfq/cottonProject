@@ -42,13 +42,26 @@
 
     <!--分页查询-->
     <select id="findByPage" resultMap="tZpcjsjMap">
-        SELECT id,nian_fen,hang_hao,belong_to_account,zhong_ming,lai_yuan,chang_du,bi_qiang,ma_zhi,ling_zhong,yi_fen,chu_miao_qi,kai_hua_qi,tu_xu_qi,szs_miao_qi,szs_hua_qi,zqd_miao_qi,zqd_hua_qi,shou_huo_zhu_shu,zytx_zhu_xing,zytx_ye_xing,zytx_ling_xing,zytx_zhu_gao,zytx_jie_ling_xing,zytx_ye_xu_xing,ku_wei_bing_zhi,huang_wei_bing_zhi,tian_jian_jue_xuan,mark FROM t_zpcjsj
+        SELECT id,nian_fen,hang_hao,belong_to_account,zhong_ming,lai_yuan,chang_du,bi_qiang,ma_zhi,ling_zhong,yi_fen,chu_miao_qi,kai_hua_qi,tu_xu_qi,szs_miao_qi,szs_hua_qi,zqd_miao_qi,zqd_hua_qi,shou_huo_zhu_shu,zytx_zhu_xing,zytx_ye_xing,zytx_ling_xing,zytx_zhu_gao,zytx_jie_ling_xing,zytx_ye_xu_xing,ku_wei_bing_zhi,huang_wei_bing_zhi,tian_jian_jue_xuan,mark FROM t_zpcjsj  order by nian_fen desc
+    </select>
+
+    <!--分页条件查询-->
+    <select id="findByTJ" resultMap="tZpcjsjMap">
+
+        SELECT * FROM t_zpcjsj where 1=1
+        <if test="nianFen!=null and nianFen!=''">
+            and nian_fen = #{nianFen}
+        </if>
+        <if test="zhongMing!=null and zhongMing!='' ">
+            and zhong_ming = #{zhongMing}
+        </if>
+        order by nian_fen desc
     </select>
 
     <!--新增-->
     <insert id="insert">
-        INSERT INTO t_zpcjsj(id,nian_fen,hang_hao,belong_to_account,zhong_ming,lai_yuan,chang_du,bi_qiang,ma_zhi,ling_zhong,yi_fen,chu_miao_qi,kai_hua_qi,tu_xu_qi,szs_miao_qi,szs_hua_qi,zqd_miao_qi,zqd_hua_qi,shou_huo_zhu_shu,zytx_zhu_xing,zytx_ye_xing,zytx_ling_xing,zytx_zhu_gao,zytx_jie_ling_xing,zytx_ye_xu_xing,ku_wei_bing_zhi,huang_wei_bing_zhi,tian_jian_jue_xuan,mark)
-        VALUES (#{id},#{nianFen},#{hangHao},#{belongToAccount},#{zhongMing},#{laiYuan},#{changDu},#{biQiang},#{maZhi},#{lingZhong},#{yiFen},#{chuMiaoQi},#{kaiHuaQi},#{tuXuQi},#{szsMiaoQi},#{szsHuaQi},#{zqdMiaoQi},#{zqdHuaQi},#{shouHuoZhuShu},#{zytxZhuXing},#{zytxYeXing},#{zytxLingXing},#{zytxZhuGao},#{zytxJieLingXing},#{zytxYeXuXing},#{kuWeiBingZhi},#{huangWeiBingZhi},#{tianJianJueXuan},#{mark})
+        INSERT INTO t_zpcjsj(nian_fen,hang_hao,belong_to_account,zhong_ming,lai_yuan,chang_du,bi_qiang,ma_zhi,ling_zhong,yi_fen,chu_miao_qi,kai_hua_qi,tu_xu_qi,szs_miao_qi,szs_hua_qi,zqd_miao_qi,zqd_hua_qi,shou_huo_zhu_shu,zytx_zhu_xing,zytx_ye_xing,zytx_ling_xing,zytx_zhu_gao,zytx_jie_ling_xing,zytx_ye_xu_xing,ku_wei_bing_zhi,huang_wei_bing_zhi,tian_jian_jue_xuan,mark)
+        VALUES (#{nianFen},#{hangHao},#{belongToAccount},#{zhongMing},#{laiYuan},#{changDu},#{biQiang},#{maZhi},#{lingZhong},#{yiFen},#{chuMiaoQi},#{kaiHuaQi},#{tuXuQi},#{szsMiaoQi},#{szsHuaQi},#{zqdMiaoQi},#{zqdHuaQi},#{shouHuoZhuShu},#{zytxZhuXing},#{zytxYeXing},#{zytxLingXing},#{zytxZhuGao},#{zytxJieLingXing},#{zytxYeXuXing},#{kuWeiBingZhi},#{huangWeiBingZhi},#{tianJianJueXuan},#{mark})
     </insert>
 
     <!--修改-->
@@ -61,6 +74,13 @@
     <delete id="deleteById">
         DELETE FROM t_zpcjsj
         WHERE id=#{id}
+    </delete>
+
+    <delete id="deleteSelect">
+        delete from t_zpcjsj  where id  in
+        <foreach collection='list' item='custId' open='(' close=')' separator=','>
+            #{custId}
+        </foreach>
     </delete>
 
 </mapper>
