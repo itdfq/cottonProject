@@ -137,7 +137,7 @@
                 contentType: "application/json;charset=utf-8",
                 success:function (data){
                     if (data.msg!=1){
-                        alert("登录失败");
+                        alert(data.msg);
                         // layer.alert(data.msg+"请重新登录",{icon: 5});
                         window.self.location="/"
                         // location.reload()

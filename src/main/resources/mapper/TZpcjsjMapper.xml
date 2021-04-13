@@ -42,7 +42,11 @@
 
     <!--分页查询-->
     <select id="findByPage" resultMap="tZpcjsjMap">
-        SELECT id,nian_fen,hang_hao,belong_to_account,zhong_ming,lai_yuan,chang_du,bi_qiang,ma_zhi,ling_zhong,yi_fen,chu_miao_qi,kai_hua_qi,tu_xu_qi,szs_miao_qi,szs_hua_qi,zqd_miao_qi,zqd_hua_qi,shou_huo_zhu_shu,zytx_zhu_xing,zytx_ye_xing,zytx_ling_xing,zytx_zhu_gao,zytx_jie_ling_xing,zytx_ye_xu_xing,ku_wei_bing_zhi,huang_wei_bing_zhi,tian_jian_jue_xuan,mark FROM t_zpcjsj  order by nian_fen desc
+        SELECT * FROM t_zpcjsj where 1=1
+        <if test="belongToAccount!=null and belongToAccount!=''">
+            and belong_to_account=#{belongToAccount}
+        </if>
+        order by nian_fen desc
     </select>
 
     <!--分页条件查询-->
@@ -55,6 +59,9 @@
         <if test="zhongMing!=null and zhongMing!='' ">
             and zhong_ming = #{zhongMing}
         </if>
+        <if test="belongToAccount!=null and belongToAccount!=''">
+            and belong_to_account=#{belongToAccount}
+        </if>
         order by nian_fen desc
     </select>
 
@@ -63,6 +70,8 @@
         INSERT INTO t_zpcjsj(nian_fen,hang_hao,belong_to_account,zhong_ming,lai_yuan,chang_du,bi_qiang,ma_zhi,ling_zhong,yi_fen,chu_miao_qi,kai_hua_qi,tu_xu_qi,szs_miao_qi,szs_hua_qi,zqd_miao_qi,zqd_hua_qi,shou_huo_zhu_shu,zytx_zhu_xing,zytx_ye_xing,zytx_ling_xing,zytx_zhu_gao,zytx_jie_ling_xing,zytx_ye_xu_xing,ku_wei_bing_zhi,huang_wei_bing_zhi,tian_jian_jue_xuan,mark)
         VALUES (#{nianFen},#{hangHao},#{belongToAccount},#{zhongMing},#{laiYuan},#{changDu},#{biQiang},#{maZhi},#{lingZhong},#{yiFen},#{chuMiaoQi},#{kaiHuaQi},#{tuXuQi},#{szsMiaoQi},#{szsHuaQi},#{zqdMiaoQi},#{zqdHuaQi},#{shouHuoZhuShu},#{zytxZhuXing},#{zytxYeXing},#{zytxLingXing},#{zytxZhuGao},#{zytxJieLingXing},#{zytxYeXuXing},#{kuWeiBingZhi},#{huangWeiBingZhi},#{tianJianJueXuan},#{mark})
     </insert>
+
+
 
     <!--修改-->
     <update id="update">
@@ -82,5 +91,14 @@
             #{custId}
         </foreach>
     </delete>
+
+
+    <!--批量 插入记录 -->
+    <insert id="insertList" >
+        INSERT INTO t_zpcjsj(nian_fen,hang_hao,belong_to_account,zhong_ming,lai_yuan,chang_du,bi_qiang,ma_zhi,ling_zhong,yi_fen,chu_miao_qi,kai_hua_qi,tu_xu_qi,szs_miao_qi,szs_hua_qi,zqd_miao_qi,zqd_hua_qi,shou_huo_zhu_shu,zytx_zhu_xing,zytx_ye_xing,zytx_ling_xing,zytx_zhu_gao,zytx_jie_ling_xing,zytx_ye_xu_xing,ku_wei_bing_zhi,huang_wei_bing_zhi,tian_jian_jue_xuan,mark)VALUES
+        <foreach collection="list" item="item" index="index" separator=','>
+                (#{item.nianFen},#{item.hangHao},#{item.belongToAccount},#{item.zhongMing},#{item.laiYuan},#{item.changDu},#{item.biQiang},#{item.maZhi},#{item.lingZhong},#{item.yiFen},#{item.chuMiaoQi},#{item.kaiHuaQi},#{item.tuXuQi},#{item.szsMiaoQi},#{item.szsHuaQi},#{item.zqdMiaoQi},#{item.zqdHuaQi},#{item.shouHuoZhuShu},#{item.zytxZhuXing},#{item.zytxYeXing},#{item.zytxLingXing},#{item.zytxZhuGao},#{item.zytxJieLingXing},#{item.zytxYeXuXing},#{item.kuWeiBingZhi},#{item.huangWeiBingZhi},#{item.tianJianJueXuan},#{item.mark})
+        </foreach>
+    </insert>
 
 </mapper>

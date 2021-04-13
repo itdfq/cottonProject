@@ -23,7 +23,7 @@
     <!--    用于登录-->
     <select id="findByUsername" resultMap="tTeamMap">
         SELECT id,username,password,role,tel,head_img_name FROM t_team
-        WHERE username=#{username}  and aaccount_state=1
+        WHERE username=#{username}  and aaccount_state = 1
     </select>
 
     <update id="reset">

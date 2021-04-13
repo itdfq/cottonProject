@@ -2,6 +2,7 @@ package com.itdfq.cotton.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.itdfq.cotton.model.TAdmin;
+import com.itdfq.cotton.model.TTeam;
 import com.itdfq.cotton.model.TZpglsj;
 import com.itdfq.cotton.service.TZpglsjService;
 import io.swagger.annotations.Api;
@@ -10,6 +11,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,10 +38,16 @@ public class TZpglsjController {
     @RequestMapping("/findByPage")
     @ApiOperation("分页查询")
     public Map<String,Object> findByPage(@ApiParam("页号") @RequestParam(defaultValue = "1") Integer page,
-                                         @ApiParam("每页大小") @RequestParam(defaultValue = "10") Integer limit) {
+                                         @ApiParam("每页大小") @RequestParam(defaultValue = "10") Integer limit, HttpSession session) {
         map.clear();
         try {
-            PageInfo<TZpglsj> byPage = tZpglsjService.findByPage(page, limit);
+            TZpglsj tZpglsj = new TZpglsj();
+            //获取session中的用户名
+            TTeam user = (TTeam) session.getAttribute("user");
+            if (!user.getRole().equals("2")){
+                tZpglsj.setBelongToAccount(user.getUsername());
+            }
+            PageInfo<TZpglsj> byPage = tZpglsjService.findByPage(page,limit,tZpglsj);
             map.put("count",byPage.getTotal());
             map.put("data",byPage.getList());
             map.put("code",0);
@@ -53,9 +61,14 @@ public class TZpglsjController {
     @RequestMapping("/findByTJ")
     @ApiOperation("分页条件查询")
     public Map<String,Object> findByTJ(@ApiParam("页号") @RequestParam(defaultValue = "1") Integer page,
-                                         @ApiParam("每页大小") @RequestParam(defaultValue = "10") Integer limit,@RequestBody TZpglsj tZpglsj) {
+                                         @ApiParam("每页大小") @RequestParam(defaultValue = "10") Integer limit,@RequestBody TZpglsj tZpglsj,HttpSession session) {
         map.clear();
         try {
+            TTeam user = (TTeam) session.getAttribute("user");
+            if (!user.getRole().equals("2")){
+                tZpglsj.setBelongToAccount(user.getUsername());
+            }
+            System.out.println(tZpglsj);
             PageInfo<TZpglsj> byPage = tZpglsjService.findByTJ(page, limit,tZpglsj);
             map.put("count",byPage.getTotal());
             map.put("data",byPage.getList());

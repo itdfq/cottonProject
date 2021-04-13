@@ -84,7 +84,7 @@ layui.define(["jquery", "miniMenu", "element","miniTab", "miniTheme"], function 
          */
 
         renderLogo: function (data) {
-            data.title="宿舍管理系统"
+            // data.title="宿舍管理系统"
             var html = '<a href="' + data.href + '"><img src="' + data.image + '" alt="logo"><h1>' + data.title + '</h1></a>';
             $('.layuimini-logo').html(html);
         },

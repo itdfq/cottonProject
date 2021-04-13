@@ -3,6 +3,7 @@ package com.itdfq.cotton.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.itdfq.cotton.dao.TZpglsjDAO;
+import com.itdfq.cotton.model.TZpcjsj;
 import com.itdfq.cotton.model.TZpglsj;
 import com.itdfq.cotton.service.TZpglsjService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class TZpglsjServiceImpl implements TZpglsjService {
 
     @Transactional(readOnly = true)
     @Override
-    public PageInfo<TZpglsj> findByPage(int pageNum, int pageSize) {
+    public PageInfo<TZpglsj> findByPage(int pageNum, int pageSize, TZpglsj tZpglsj) {
         PageHelper.startPage(pageNum, pageSize);
-        return PageInfo.of(tZpglsjDAO.findByPage());
+        return PageInfo.of(tZpglsjDAO.findByPage(tZpglsj));
     }
 
     @Override

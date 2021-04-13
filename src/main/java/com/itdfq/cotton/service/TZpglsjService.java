@@ -1,6 +1,7 @@
 package com.itdfq.cotton.service;
 
 import com.github.pagehelper.PageInfo;
+import com.itdfq.cotton.model.TZpcjsj;
 import com.itdfq.cotton.model.TZpglsj;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface TZpglsjService {
      * @param pageSize 每页大小
      * @return {@link TZpglsj}
      */
-    PageInfo<TZpglsj> findByPage(int pageNum, int pageSize);
+    PageInfo<TZpglsj> findByPage(int pageNum, int pageSize, TZpglsj tZpglsj);
 
     /**
      * 新增

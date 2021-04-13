@@ -84,12 +84,20 @@
 
     <!--分页查询-->
     <select id="findByPage" resultMap="tZpglsjMap">
-        SELECT id,belong_to_account,zai_pei_nian_fen,tu_rang_qian_zuo,geng_di_zheng_di,bo_zhong_qi,yi_miao_qi,jian_miao_qi,ding_miao_qi,zhong_geng_chu_cao_01,zhong_geng_chu_cao_02,zhong_geng_chu_cao_03,zhong_geng_chu_cao_04,zhong_geng_chu_cao_05,zhong_geng_chu_cao_06,zhong_geng_chu_cao_07,zhong_geng_chu_cao_08,zhong_geng_chu_cao_09,zhong_geng_chu_cao_10,zhong_geng_chu_cao_11,zhong_geng_chu_cao_12,peiTuQi,ji_fei,zhui_fei_date_1,zhui_fei_1,zhui_fei_date_2,zhui_fei_2,zhui_fei_date_3,zhui_fei_3,zhui_fei_date_4,zhui_fei_4,guan_gai_1,guan_gai_2,guan_gai_3,guan_gai_4,guan_gai_5,guan_gai_6,guan_gai_7,guan_gai_8,guan_gai_9,zheng_zhi_1,zheng_zhi_2,zheng_zhi_3,da_ding,bing_chong_fang_zhi_date_1,bing_chong_fang_zhi_1,bing_chong_fang_zhi_date_2,bing_chong_fang_zhi_2,bing_chong_fang_zhi_date_3,bing_chong_fang_zhi_3,bing_chong_fang_zhi_date_4,bing_chong_fang_zhi_4,bing_chong_fang_zhi_date_5,bing_chong_fang_zhi_5,bing_chong_fang_zhi_date_6,bing_chong_fang_zhi_6,hua_tiao_date_1,hua_tiao_1,hua_tiao_date_2,hua_tiao_2,hua_tiao_date_3,hua_tiao_3,hua_tiao_date_4,hua_tiao_4,shou_hua_qi_1,shou_hua_qi_2,shou_hua_qi_3,sjq_chu_shuang,sjq_ku_shuang,qiu_geng,mark FROM t_zpglsj
+        SELECT * FROM t_zpglsj where 1=1
+        <if test="belongToAccount!=null and belongToAccount!=''">
+            and belong_to_account=#{belongToAccount}
+        </if>
+        order by zai_pei_nian_fen desc
     </select>
 
     <!--分页条件查询-->
     <select id="findByTJ" resultMap="tZpglsjMap">
-        SELECT * FROM t_zpglsj where belong_to_account=#{belongToAccount}
+        SELECT * FROM t_zpglsj where zai_pei_nian_fen=#{zaiPeiNianFen}
+        <if test="belongToAccount!=null and belongToAccount!=''">
+            and belong_to_account=#{belongToAccount}
+        </if>
+        order by zai_pei_nian_fen desc
     </select>
 
     <!--新增-->

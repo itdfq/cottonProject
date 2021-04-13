@@ -23,7 +23,7 @@ public interface TZpcjsjDAO {
      *
      * @return {@link TZpcjsj}
      */
-    Page<TZpcjsj> findByPage();
+    Page<TZpcjsj> findByPage(TZpcjsj tZpcjsj);
 
     /**
      * 新增
@@ -49,4 +49,8 @@ public interface TZpcjsjDAO {
     Page<TZpcjsj> findByTJ(TZpcjsj tZpcjsj);
 
     void deleteSelect(List<String> list);
+
+    void insertList(List<TZpcjsj> list);
+
+
 }

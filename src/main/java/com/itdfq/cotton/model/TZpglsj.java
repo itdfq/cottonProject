@@ -1,5 +1,6 @@
 package com.itdfq.cotton.model;
 
+import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -21,6 +22,7 @@ public class TZpglsj {
      */
 
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
+    @DateTimeFormat("yyyy-MM-dd")
     private Date zaiPeiNianFen;
     /**
      *
@@ -34,6 +36,7 @@ public class TZpglsj {
      *
      */
       @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
+      @DateTimeFormat("yyyy-MM-dd")
     private Date boZhongQi;
     /**
      *

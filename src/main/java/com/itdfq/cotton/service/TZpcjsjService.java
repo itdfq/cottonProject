@@ -25,7 +25,7 @@ public interface TZpcjsjService {
      * @param pageSize 每页大小
      * @return {@link TZpcjsj}
      */
-    PageInfo<TZpcjsj> findByPage(int pageNum, int pageSize);
+    PageInfo<TZpcjsj> findByPage(int pageNum, int pageSize,TZpcjsj tZpcjsj);
 
     /**
      * 分页条件查询
@@ -57,4 +57,10 @@ public interface TZpcjsjService {
     void deleteById(Integer id);
 
     void deleteSelect(List<String> list);
+
+    void insertList(List<TZpcjsj> list);
+
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.itdfq.cotton.dao;
 
 import com.github.pagehelper.Page;
+import com.itdfq.cotton.model.TZpcjsj;
 import com.itdfq.cotton.model.TZpglsj;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface TZpglsjDAO {
      *
      * @return {@link TZpglsj}
      */
-    Page<TZpglsj> findByPage();
+    Page<TZpglsj> findByPage(TZpglsj tZpglsj);
 
     /**
      * 新增

@@ -164,10 +164,11 @@ public class TTeamController {
 
         map.clear();
         TTeam byUsername = null;
+        System.out.println(tTeam);
         try {
             byUsername = tTeamService.findByUsername(tTeam.getUsername());
             if (byUsername==null) {
-                map.put("msg", "用户不存在");
+                map.put("msg", "用户不存在或被锁定");
             }else {
                 if (byUsername.getPassword().equals(tTeam.getPassword())) {
                     map.put("msg", 1);

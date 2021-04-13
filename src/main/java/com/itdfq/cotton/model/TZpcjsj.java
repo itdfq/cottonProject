@@ -1,5 +1,8 @@
 package com.itdfq.cotton.model;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -10,125 +13,160 @@ import java.util.Date;
  */
 
 public class TZpcjsj {
+
+
     /**
      *
      */
+    @ExcelIgnore
     private Integer id;
     /**
      * 年份
      */
+    @ExcelProperty("年份")
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
+    @DateTimeFormat("yyyy-MM-dd")
     private String nianFen;
     /**
      * 行号
      */
+    @ExcelProperty("行号")
     private String hangHao;
     /**
      * 所属账户
      */
+    @ExcelProperty("所属账户")
     private String belongToAccount;
     /**
      * 品种名称杂交组合
      */
+    @ExcelProperty("品种（系）名称杂交组合")
     private String zhongMing;
     /**
      * 来源
      */
+    @ExcelProperty("来源")
     private String laiYuan;
     /**
      * 长度
      */
+    @ExcelProperty("长度")
     private String changDu;
     /**
      * 比强
      */
+    @ExcelProperty("比强")
     private String biQiang;
     /**
      * 马值
      */
+    @ExcelProperty("马值")
     private String maZhi;
     /**
      * 铃重
      */
+    @ExcelProperty("铃重")
     private String lingZhong;
     /**
      * 衣分
      */
+    @ExcelProperty("衣分")
     private String yiFen;
     /**
      * 出苗期
      */
+    @ExcelProperty("出苗期")
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
+    @DateTimeFormat("yyyy-MM-dd")
     private Date chuMiaoQi;
     /**
      * 开花期
      */
+    @ExcelProperty("开花期")
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
+    @DateTimeFormat("yyyy-MM-dd")
     private Date kaiHuaQi;
     /**
      *
      */
+    @ExcelProperty("吐絮期")
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
+    @DateTimeFormat("yyyy-MM-dd")
     private Date tuXuQi;
     /**
      *
      */
+    @ExcelProperty("生长势--苗期")
     private String szsMiaoQi;
     /**
      *
      */
+    @ExcelProperty("生长势--花期")
     private String szsHuaQi;
     /**
      *
      */
+    @ExcelProperty("整齐度--苗期")
     private String zqdMiaoQi;
     /**
      *
      */
+    @ExcelProperty("整齐度--花期")
     private String zqdHuaQi;
     /**
      *
      */
+    @ExcelProperty("收获株数")
     private Integer shouHuoZhuShu;
     /**
      *
      */
+    @ExcelProperty("主要特征特性--株型")
     private Integer zytxZhuXing;
     /**
      *
      */
+    @ExcelProperty("主要特征特性--叶型")
     private Integer zytxYeXing;
     /**
      *
      */
+    @ExcelProperty("主要特征特性--铃型")
     private Integer zytxLingXing;
     /**
      *
      */
+    @ExcelProperty("主要特征特性--株高")
     private Integer zytxZhuGao;
     /**
      *
      */
+    @ExcelProperty(" 主要特征特性--结铃型")
     private Integer zytxJieLingXing;
     /**
      *
      */
+    @ExcelProperty("主要特征特性--叶絮型")
     private Integer zytxYeXuXing;
     /**
      *
      */
+    @ExcelProperty("抗病性--枯萎病指")
     private Integer kuWeiBingZhi;
     /**
      *
      */
+    @ExcelProperty("抗病性--黄萎病指")
     private Integer huangWeiBingZhi;
     /**
      *
      */
+    @ExcelProperty("田间绝选")
     private String tianJianJueXuan;
     /**
      *
      */
+    @ExcelProperty("备注")
     private String mark;
 
     public Integer getId() {
@@ -361,5 +399,40 @@ public class TZpcjsj {
 
     public void setMark(String mark) {
         this.mark = mark;
+    }
+
+    @Override
+    public String toString() {
+        return "TZpcjsj{" +
+                "id=" + id +
+                ", nianFen='" + nianFen + '\'' +
+                ", hangHao='" + hangHao + '\'' +
+                ", belongToAccount='" + belongToAccount + '\'' +
+                ", zhongMing='" + zhongMing + '\'' +
+                ", laiYuan='" + laiYuan + '\'' +
+                ", changDu='" + changDu + '\'' +
+                ", biQiang='" + biQiang + '\'' +
+                ", maZhi='" + maZhi + '\'' +
+                ", lingZhong='" + lingZhong + '\'' +
+                ", yiFen='" + yiFen + '\'' +
+                ", chuMiaoQi=" + chuMiaoQi +
+                ", kaiHuaQi=" + kaiHuaQi +
+                ", tuXuQi=" + tuXuQi +
+                ", szsMiaoQi='" + szsMiaoQi + '\'' +
+                ", szsHuaQi='" + szsHuaQi + '\'' +
+                ", zqdMiaoQi='" + zqdMiaoQi + '\'' +
+                ", zqdHuaQi='" + zqdHuaQi + '\'' +
+                ", shouHuoZhuShu=" + shouHuoZhuShu +
+                ", zytxZhuXing=" + zytxZhuXing +
+                ", zytxYeXing=" + zytxYeXing +
+                ", zytxLingXing=" + zytxLingXing +
+                ", zytxZhuGao=" + zytxZhuGao +
+                ", zytxJieLingXing=" + zytxJieLingXing +
+                ", zytxYeXuXing=" + zytxYeXuXing +
+                ", kuWeiBingZhi=" + kuWeiBingZhi +
+                ", huangWeiBingZhi=" + huangWeiBingZhi +
+                ", tianJianJueXuan='" + tianJianJueXuan + '\'' +
+                ", mark='" + mark + '\'' +
+                '}';
     }
 }

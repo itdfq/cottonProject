@@ -26,9 +26,9 @@ public class TZpcjsjServiceImpl implements TZpcjsjService {
 
     @Transactional(readOnly = true)
     @Override
-    public PageInfo<TZpcjsj> findByPage(int pageNum, int pageSize) {
+    public PageInfo<TZpcjsj> findByPage(int pageNum, int pageSize,TZpcjsj tZpcjsj) {
         PageHelper.startPage(pageNum, pageSize);
-        return PageInfo.of(tZpcjsjDAO.findByPage());
+        return PageInfo.of(tZpcjsjDAO.findByPage(tZpcjsj));
     }
 
     @Override
@@ -56,5 +56,11 @@ public class TZpcjsjServiceImpl implements TZpcjsjService {
     public void deleteSelect(List<String> list) {
         tZpcjsjDAO.deleteSelect(list);
     }
+
+    @Override
+    public void insertList(List<TZpcjsj> list) {
+        tZpcjsjDAO.insertList(list);
+    }
+
 
 }

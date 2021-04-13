@@ -19,9 +19,9 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">所属账户</label>
+                            <label class="layui-form-label">栽培年份</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="belongToAccount" autocomplete="off" class="layui-input">
+                                <input type="date" name="zaiPeiNianFen" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
@@ -199,7 +199,7 @@
                 url: '/tZpglsjs/findByTJ'
                 ,method:'post'
                 ,where: {
-                    'belongToAccount':data.field.belongToAccount,
+                    'zaiPeiNianFen':data.field.zaiPeiNianFen,
 
                 }
                 ,contentType: 'application/json'
