@@ -4,7 +4,7 @@ import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
+
 
 import java.util.Date;
 
@@ -24,8 +24,6 @@ public class TZpcjsj {
      * 年份
      */
     @ExcelProperty("年份")
-    @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
-    @DateTimeFormat("yyyy-MM-dd")
     private String nianFen;
     /**
      * 行号
@@ -77,21 +75,18 @@ public class TZpcjsj {
      */
     @ExcelProperty("出苗期")
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
-    @DateTimeFormat("yyyy-MM-dd")
     private Date chuMiaoQi;
     /**
      * 开花期
      */
     @ExcelProperty("开花期")
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
-    @DateTimeFormat("yyyy-MM-dd")
     private Date kaiHuaQi;
     /**
      *
      */
     @ExcelProperty("吐絮期")
     @JsonFormat(pattern="yyyy-MM-dd", timezone="GMT+8")
-    @DateTimeFormat("yyyy-MM-dd")
     private Date tuXuQi;
     /**
      *

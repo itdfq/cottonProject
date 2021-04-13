@@ -19,9 +19,14 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
+<!--                            <label class="layui-form-label">栽培年份</label>-->
+<!--                            <div class="layui-input-inline">-->
+<!--&lt;!&ndash;                                <input type="date" name="zaiPeiNianFen" autocomplete="off" class="layui-input" placeholder="yyyy-MM-dd">&ndash;&gt;-->
+<!--                                <input type="date" name="zaiPeiNianFen" class="layui-input" id="test1" placeholder="yyyy-MM-dd">-->
+<!--                            </div>-->
                             <label class="layui-form-label">栽培年份</label>
                             <div class="layui-input-inline">
-                                <input type="date" name="zaiPeiNianFen" autocomplete="off" class="layui-input">
+                                <input type="text" name="zaiPeiNianFen" id="date2" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
@@ -55,6 +60,8 @@
 </div>
 <script src="../lib/layui-v/layui.js" charset="utf-8"></script>
 <script>
+
+
     $(function (){
         $.ajax({
             url: '/tAdmins/findByUser',
@@ -69,13 +76,16 @@
         })
     })
 
-
-
-    layui.use(['form', 'table'], function () {
+    layui.use(['form', 'table','laydate'], function () {
         var $ = layui.jquery,
             form = layui.form,
-            table = layui.table;
+            table = layui.table,
+            laydate = layui.laydate;
 
+        //日期
+        laydate.render({
+            elem: '#date2'
+        });
         //表格界面
         table.render({
             elem: '#currentTableId',
@@ -93,7 +103,6 @@
                 //         return '<em>'+ res.email +'</em>'
                 //     }}
                 {type: 'checkbox', fixed: 'left',align:'center'}
-                ,{field:'belongToAccount', title:'所属账户', width:150, sort: true }
                 ,{field:'zaiPeiNianFen', title:'栽培年份', width:150,  sort: true}
                 ,{field:'tuRangQianZuo', title:'土壤和前作', width:150,  sort: true}
                 ,{field:'gengDiZhengDi', title:'耕地与征地', width:150, sort: true }
@@ -162,6 +171,7 @@
                 ,{field:'sjqChuShuang', title:'霜降期--初霜', width:150,  sort: true},
                 ,{field:'sjqKuShuang', title:'霜降期--枯霜', width:150,  sort: true},
                 ,{field:'qiuGeng', title:'秋耕', width:150,  sort: true},
+                ,{field:'belongToAccount', title:'所属账户', width:150, sort: true }
                 ,{field:'mark', title:'备注', width:150,  sort: true}
                 ,{title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]], page: true

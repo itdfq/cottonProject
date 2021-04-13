@@ -27,8 +27,13 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">年份</label>
                             <div class="layui-input-inline">
-                                <input type="date" name="nianFen" autocomplete="off" class="layui-input">
+                                <input type="text" name="nianFen" autocomplete="off" class="layui-input" >
                             </div>
+<!--                            <label class="layui-form-label">年份</label>-->
+<!--                            <div class="layui-input-inline">-->
+<!--                                <input type="text" name="nianFen" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">-->
+<!--                            </div>-->
+
                         </div>
                         <div class="layui-inline">
                             <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
@@ -69,6 +74,9 @@
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
+
+
+
         var username = null;
         $.ajax({
             url: '/tAdmins/findByUser',
@@ -104,7 +112,7 @@
                 //     }}
                 ,{field:'hangHao', title:'行号', width:'10%', sort: true, fixed: 'left',totalRow: true}
                 ,{field:'zhongMing', title:'品种（系）名称杂交组合', width:'20%', fixed: 'left',  sort: true}
-                ,{field:'belongToAccount', title:'所属账户', width:'15%',  sort: true}
+
                 ,{field:'laiYuan', title:'来源', width:'15%', sort: true, totalRow: true}
                 ,{field:'changDu', title:'长度', width:'15%',  sort: true}
                 ,{field:'biQiang', title:'比强', width:'15%',  sort: true}
@@ -128,6 +136,7 @@
                 ,{field:'kuWeiBingZhi', title:'抗病性--枯萎病指', width:'15%',  sort: true}
                 ,{field:'huangWeiBingZhi', title:'抗病性--黄萎病指', width:'15%',  sort: true}
                 ,{field:'tianJianJueXuan', title:'田间决选', width:'15%',  sort: true}
+                ,{field:'belongToAccount', title:'所属账户', width:'15%',  sort: true}
                 ,{field:'mark', title:'备注', width:'15%',  sort: true}
                 ,{title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]], page: true

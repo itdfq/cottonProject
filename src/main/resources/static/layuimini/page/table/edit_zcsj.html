@@ -27,7 +27,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">年份</label>
         <div class="layui-input-block">
-            <input type="date" id="nianFen" name="nianFen" lay-verify="required"   lay-reqtext="年份不能为空"
+            <input type="text" id="nianFen" name="nianFen" lay-verify="required"   lay-reqtext="年份不能为空"
                    value="" class="layui-input">
         </div>
     </div>
@@ -113,22 +113,22 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">出苗期</label>
         <div class="layui-input-block">
-            <input type="date" id="chuMiaoQi" name="chuMiaoQi"   value=""
-                   class="layui-input">
+            <input type="text" id="chuMiaoQi" name="chuMiaoQi"   value=""
+                     class="layui-input my_class_name" placeholder="yyyy-MM-dd">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">开花期</label>
         <div class="layui-input-block">
-            <input type="date" id="kaiHuaQi" name="kaiHuaQi"   value=""
-                   class="layui-input">
+            <input type="text" id="kaiHuaQi" name="kaiHuaQi"   value=""
+                     class="layui-input my_class_name" placeholder="yyyy-MM-dd">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">吐絮期</label>
         <div class="layui-input-block">
-            <input type="date" id="tuXuQi" name="tuXuQi"   value=""
-                   class="layui-input">
+            <input type="text" id="tuXuQi" name="tuXuQi"   value=""
+                     class="layui-input my_class_name" placeholder="yyyy-MM-dd">
         </div>
     </div>
     <div class="layui-form-item">
@@ -251,33 +251,19 @@
 
 <script src="../../lib/layui-v/layui.js" charset="utf-8"></script>
 <script>
-    $(document).ready(function () {
-        $.ajax({
-            type:"get",
-            url:'/tTeams/myselect',
-            success:function(userList){
-                if (userList.msg==1){
-                    // console.log(userList.data);
-                    // alert(userList.data[3].custIndustry);
-                    // alert(userList.data.length);
 
-                    if(userList.data!=null){ //后台传回来的select选项
-                        for(var i=0;i<userList.data.length;i++){
-                            $("#belongToAccount").append("<option value='" + userList.data[i].username + "'>" + userList.data[i].username + "</option>");
-                        }
-                        layui.use('form', function () {
-                            var form = layui.form;
-                            form.render();
-                        });
-                    }
-                }
-            }
-        })
-    })
-    layui.use(['form'], function () {
+    layui.use(['form','laydate'], function () {
         var form = layui.form,
             layer = layui.layer,
+            laydate = layui.laydate,
             $ = layui.$;
+
+        //日期
+        $('.my_class_name').each(function() {
+            laydate.render({
+                elem: this       //使用this指向当前元素,不能使用class名, 否则只有第一个有效
+            });
+        })
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
@@ -303,6 +289,29 @@
         });
 
     });
+    $(document).ready(function () {
+        $.ajax({
+            type:"get",
+            url:'/tTeams/myselect',
+            success:function(userList){
+                if (userList.msg==1){
+                    // console.log(userList.data);
+                    // alert(userList.data[3].custIndustry);
+                    // alert(userList.data.length);
+
+                    if(userList.data!=null){ //后台传回来的select选项
+                        for(var i=0;i<userList.data.length;i++){
+                            $("#belongToAccount").append("<option value='" + userList.data[i].username + "'>" + userList.data[i].username + "</option>");
+                        }
+                        layui.use('form', function () {
+                            var form = layui.form;
+                            form.render();
+                        });
+                    }
+                }
+            }
+        })
+    })
 </script>
 </body>
 </html>
